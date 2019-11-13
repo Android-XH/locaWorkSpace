@@ -38,7 +38,7 @@ public class HomePresenter extends BasePresenter<ProductModeImpl, IHomeView> {
 
     public void loadMore() {
         page += 1;
-        getProductList(LoadStatus.LOAD_REFRESH);
+        getProductList(LoadStatus.LOAD_MORE);
     }
 
     private void getProductList(LoadStatus status) {
