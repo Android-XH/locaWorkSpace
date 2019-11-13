@@ -5,6 +5,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.shop.R;
+import com.example.shop.adapter.ProductAdapter;
 import com.example.shop.bean.Product;
 import com.example.shop.presenter.HomePresenter;
 import com.example.shop.viewImpl.IHomeView;
@@ -25,7 +26,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements IHomeVi
     ListView productList;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-
+    private ProductAdapter adapter;
     @Override
     protected int getLayout() {
         return R.layout.activity_home;
@@ -38,16 +39,18 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements IHomeVi
 
     @Override
     protected void initData(Bundle bundle) {
+        adapter=new ProductAdapter(this);
+        productList.setAdapter(adapter);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                getPresenter().loadRefresh();
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshlayout) {
-                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                getPresenter().loadMore();
             }
         });
     }
@@ -60,12 +63,14 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements IHomeVi
     @Override
     public void onLoadList(List<Product.Data> dataList) {
         Logx.e("服务器返回数据" + dataList.toString());
+        adapter.setList(dataList);
+        refreshLayout.finishRefresh(true);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void onLoadMore(List<Product.Data> dataList) {
+        adapter.addList(dataList);
+        refreshLayout.finishLoadMore(true);
     }
+
 }

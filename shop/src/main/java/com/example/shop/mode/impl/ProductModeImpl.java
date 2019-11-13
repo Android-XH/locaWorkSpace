@@ -15,14 +15,14 @@ import static com.example.shop.api.param.ErrMessage.*;
 
 public class ProductModeImpl extends BaseAppMode implements IProductMode {
     @Override
-    public void getProductList(Pagination pagination, final CallBack<List<Product.Data>> callBack) {
+    public void getProductList(Pagination pagination, final CallBack<ProductList> callBack) {
         get(Method.GET_PRODUCT_LIST,getParam().getProductList(pagination), new CallBack() {
             @Override
             public void onSuccess(Object o) {
                 ProductList productList= GsonUtil.parseData(o,ProductList.class);
                 if(productList!=null){
                     if(productList.isSuccess()){
-                        callBack.onSuccess(productList.getData());
+                        callBack.onSuccess(productList);
                     }else{
                         callBack.onFail(productList.getMsg());
                     }

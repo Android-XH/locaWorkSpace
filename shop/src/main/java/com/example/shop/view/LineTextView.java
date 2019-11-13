@@ -31,7 +31,7 @@ public class LineTextView extends TextView {
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);  // 设置中划线并加清晰
+        this.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);  // 设置中划线并加清晰
         super.setText(text, type);
     }
 }

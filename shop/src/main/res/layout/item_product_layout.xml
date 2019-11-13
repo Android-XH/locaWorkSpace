@@ -15,14 +15,16 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:orientation="vertical"
             android:layout_toRightOf="@+id/imv_src"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tv_title"
                 android:text="this is title"
-                android:textSize="@dimen/dp16"
+                android:textSize="@dimen/sp16"
                 android:textColor="@color/black_66"
                 />
             <LinearLayout
@@ -33,14 +35,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="￥"
-                    android:textSize="@dimen/dp16"
+                    android:textSize="@dimen/sp16"
                     android:textColor="@color/black_33"
                     />
                 <com.example.shop.view.LineTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tv_price"
                     android:text="83.8"
-                    android:textSize="@dimen/dp13"
+                    android:textSize="@dimen/sp13"
                     android:textColor="@color/black_33"
                     />
                 <TextView
@@ -48,11 +51,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:text="6.6"
-                    android:textSize="@dimen/dp16"
+                    android:textSize="@dimen/sp16"
                     android:textColor="@color/colorAccent"
+                    android:layout_marginStart="15dp"
+                    android:id="@+id/tv_new_price"
                     />
             </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_coupon_info"
+                android:text="this is couponInfo..."
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/black_99"
+                />
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

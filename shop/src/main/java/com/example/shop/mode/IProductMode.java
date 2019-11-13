@@ -8,6 +8,6 @@ import com.example.worktools.model.CallBack;
 import java.util.List;
 
 public interface IProductMode{
-    void getProductList(Pagination pagination,CallBack<List<Product.Data>>callBack);
+    void getProductList(Pagination pagination,CallBack<ProductList>callBack);
     void getProductDetail(int id,CallBack<Product.Data>callBack);
 }

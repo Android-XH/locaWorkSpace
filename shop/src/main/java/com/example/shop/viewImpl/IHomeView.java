@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IHomeView extends BaseView {
     void onLoadList(List<Product.Data>dataList);
+    void onLoadMore(List<Product.Data>dataList);
 }
