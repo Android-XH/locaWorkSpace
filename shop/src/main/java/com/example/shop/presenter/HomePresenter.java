@@ -46,8 +46,8 @@ public class HomePresenter extends BasePresenter<ProductModeImpl, IHomeView> {
         getMode().getProductList(pagination, new CallBack<ProductList>() {
             @Override
             public void onSuccess(ProductList productList) {
-                pagination=productList.getPagination();
-                page=pagination.getPage();
+//                pagination=productList.getPagination();
+//                page=pagination.getPage();
                 switch (status) {
                     case LOAD_MORE:
                         getView().onLoadMore(productList.getData());

@@ -37,7 +37,7 @@ public class ProductAdapter extends ListAdapter<Product.Data> {
         holder.tvPrice.setText(String.format("%.2f",data.getPrice()));
         holder.tvNewPrice.setText(String.format("%.2f",data.getPrice()-data.getCoupon_amount()));
         holder.tvCouponInfo.setText(data.getDescription());
-        return null;
+        return convertView;
     }
 
     static
