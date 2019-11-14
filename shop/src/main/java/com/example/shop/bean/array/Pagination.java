@@ -22,7 +22,7 @@ public class Pagination{
     }
 
     public int getSize() {
-        return size;
+        return size==0?20:size;
     }
 
     public void setSize(int size) {

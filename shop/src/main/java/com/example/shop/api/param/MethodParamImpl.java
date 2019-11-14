@@ -9,7 +9,14 @@ public class MethodParamImpl implements IMethodParam {
     public ParamCommon getProductList(Pagination pagination) {
         ParamCommon paramCommon=new ParamCommon();
         paramCommon.put(PAGE,pagination.getPage());
-        paramCommon.put(SIZE,pagination.getPage());
+        paramCommon.put(SIZE,pagination.getSize());
+        return paramCommon;
+    }
+
+    @Override
+    public ParamCommon getProductList(int id) {
+        ParamCommon paramCommon=new ParamCommon();
+        paramCommon.put(ID,id);
         return paramCommon;
     }
 }

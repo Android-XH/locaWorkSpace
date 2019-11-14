@@ -3,6 +3,7 @@ package com.example.shop;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.worktools.util.GlideUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -19,7 +20,7 @@ public class App extends Application {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @Override
             public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.colorAccent, R.color.white);//全局设置主题颜色
+                layout.setPrimaryColorsId(R.color.colorPrimary, R.color.white);//全局设置主题颜色
                 return new BezierRadarHeader(context);
             }
         });
@@ -27,10 +28,14 @@ public class App extends Application {
         SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
             @Override
             public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                //指定为经典Footer，默认是 BallPulseFooter
-                layout.setPrimaryColorsId(R.color.colorAccent, R.color.white);//全局设置主题颜色
-                return new ClassicsFooter(context);
+                return new BallPulseFooter(context);
             }
         });
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        GlideUtil.getInstance().init(getApplicationContext());
     }
 }

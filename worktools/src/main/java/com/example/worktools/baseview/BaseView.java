@@ -6,5 +6,4 @@ public interface BaseView {
     void missLoading(String msg);
     void showLoading(String msg);
     void showToastMsg(String msg);
-    void onRefreshComplete();
 }

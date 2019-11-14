@@ -40,6 +40,25 @@ public class ProductModeImpl extends BaseAppMode implements IProductMode {
 
     @Override
     public void getProductDetail(int id, CallBack<Product.Data> callBack) {
+        get(Method.GET_PRODUCT_DETAIL,getParam().getProductList(id), new CallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                Product product= GsonUtil.parseData(o,Product.class);
+                if(product!=null){
+                    if(product.isSuccess()){
+                        callBack.onSuccess(product.getData());
+                    }else{
+                        callBack.onFail(product.getMsg());
+                    }
+                }else{
+                    callBack.onFail(NULL_BEAN);
+                }
 
+            }
+            @Override
+            public void onFail(String msg) {
+                callBack.onFail(msg);
+            }
+        });
     }
 }

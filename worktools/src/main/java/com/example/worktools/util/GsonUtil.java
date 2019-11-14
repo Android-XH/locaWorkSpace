@@ -42,7 +42,7 @@ public class GsonUtil {
             List<T> list = gson.fromJson(gson.toJson(data), type);
             return list;
         }catch (Exception e){
-            Logx.e(e.toString());
+            LogUtil.e(e.toString());
             return null;
         }
 

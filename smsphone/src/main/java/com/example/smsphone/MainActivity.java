@@ -3,7 +3,7 @@ package com.example.smsphone;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.worktools.util.Logx;
+import com.example.worktools.util.LogUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,13 +11,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Logx.init(true);
+        LogUtil.init(true);
         String[] url=Comons.str.split(",");
         for(String u:url){
             String host=u.replace("%phone_number%","18267195720");
-            Logx.e("MainActivity host===",""+host);
+            LogUtil.e("MainActivity host===",""+host);
             String result=HttpConnectionUtil.getHttp().postRequset(host);
-            Logx.e("MainActivity result===",""+result);
+            LogUtil.e("MainActivity result===",""+result);
         }
     }
 }

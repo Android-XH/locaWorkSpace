@@ -11,13 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ListAdapter<T> extends BaseAdapter{
-	
 	protected List<T> mList;
-	protected Activity mContext;
 	protected ListView mListView;
 	protected LayoutInflater inflater;
 	public ListAdapter(Activity context){
-		this.mContext = context;
 		this.inflater=LayoutInflater.from(context);
 	}
 
@@ -41,7 +38,7 @@ public abstract class ListAdapter<T> extends BaseAdapter{
 	@Override
 	public View getView(int i, View view, ViewGroup viewGroup) {
 		if(view==null){
-			view= LayoutInflater.from(mContext).inflate(getLayout(),null);
+			view= inflater.inflate(getLayout(),null);
 		}
 		return getHolderView(i,view,getItem(i));
 	}
@@ -79,8 +76,5 @@ public abstract class ListAdapter<T> extends BaseAdapter{
 	
 	public void setListView(ListView listView){
 		mListView = listView;
-	}
-	public class BaseHolder{
-
 	}
 }

@@ -2,7 +2,7 @@ package com.example.worktools.rxjava.observer;
 
 
 import com.example.worktools.model.CallBack;
-import com.example.worktools.util.Logx;
+import com.example.worktools.util.LogUtil;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -24,20 +24,20 @@ public class BaseObserver implements Observer<Object> {
     }
     @Override
     public void onSubscribe(Disposable d) {
-        Logx.e("开始获取数据");
+        LogUtil.e("开始获取数据");
         this.mDisposable = d;
     }
 
     @Override
     public void onNext(Object value) {
-        Logx.e("获取数据成功");
+        LogUtil.e("获取数据成功");
         if(!isDestory){
             callBack.onSuccess(value);
         }
     }
     @Override
     public void onError(Throwable e) {
-        Logx.e("获取数据失败"+e.getMessage());
+        LogUtil.e("获取数据失败"+e.getMessage());
         if(!isDestory){
             callBack.onFail(e.getMessage());
         }
@@ -45,7 +45,7 @@ public class BaseObserver implements Observer<Object> {
     }
     @Override
     public void onComplete() {
-        Logx.e("获取数据完成,销毁线程");
+        LogUtil.e("获取数据完成,销毁线程");
         if(mDisposable!=null){
             mDisposable.dispose();
         }

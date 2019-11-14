@@ -1,5 +1,8 @@
 package com.example.shop.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 
@@ -15,7 +18,7 @@ public class Product extends BaseBean{
         this.data = data;
     }
 
-    public static class Data{
+    public static class Data implements Parcelable {
         private int id;
         private long pid;
         private String detail_url;
@@ -30,13 +33,43 @@ public class Product extends BaseBean{
         private int coupon_total_count;
         private int coupon_remain_count;
         private String coupon_share_url;
+        private String coupon_info;
+
+        protected Data(Parcel in) {
+            id = in.readInt();
+            pid = in.readLong();
+            detail_url = in.readString();
+            short_title = in.readString();
+            title = in.readString();
+            sell_count = in.readInt();
+            price = in.readFloat();
+            description = in.readString();
+            img_url = in.readString();
+            small_images = in.createStringArrayList();
+            coupon_amount = in.readFloat();
+            coupon_total_count = in.readInt();
+            coupon_remain_count = in.readInt();
+            coupon_share_url = in.readString();
+            coupon_info = in.readString();
+        }
+
+        public static final Creator<Data> CREATOR = new Creator<Data>() {
+            @Override
+            public Data createFromParcel(Parcel in) {
+                return new Data(in);
+            }
+
+            @Override
+            public Data[] newArray(int size) {
+                return new Data[size];
+            }
+        };
 
         @Override
         public String toString() {
             return "Data{" +
                     "id=" + id +
                     ", pid=" + pid +
-                    ", detail_url='" + detail_url + '\'' +
                     ", short_title='" + short_title + '\'' +
                     ", title='" + title + '\'' +
                     ", sell_count=" + sell_count +
@@ -48,6 +81,7 @@ public class Product extends BaseBean{
                     ", coupon_total_count=" + coupon_total_count +
                     ", coupon_remain_count=" + coupon_remain_count +
                     ", coupon_share_url='" + coupon_share_url + '\'' +
+                    ", coupon_info='" + coupon_info + '\'' +
                     '}';
         }
 
@@ -161,6 +195,38 @@ public class Product extends BaseBean{
 
         public void setCoupon_share_url(String coupon_share_url) {
             this.coupon_share_url = coupon_share_url;
+        }
+
+        public String getCoupon_info() {
+            return coupon_info;
+        }
+
+        public void setCoupon_info(String coupon_info) {
+            this.coupon_info = coupon_info;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(id);
+            dest.writeLong(pid);
+            dest.writeString(detail_url);
+            dest.writeString(short_title);
+            dest.writeString(title);
+            dest.writeInt(sell_count);
+            dest.writeFloat(price);
+            dest.writeString(description);
+            dest.writeString(img_url);
+            dest.writeStringList(small_images);
+            dest.writeFloat(coupon_amount);
+            dest.writeInt(coupon_total_count);
+            dest.writeInt(coupon_remain_count);
+            dest.writeString(coupon_share_url);
+            dest.writeString(coupon_info);
         }
     }
 }

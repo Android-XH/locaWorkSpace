@@ -1,7 +1,7 @@
 package com.example.worktools.rxjava.factory;
 
 import com.example.worktools.rxjava.RetrofitService;
-import com.example.worktools.util.Logx;
+import com.example.worktools.util.LogUtil;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,7 +42,7 @@ public class RetroFactory {
             .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
                 public void log(String message) {
-                    Logx.e(message);
+                    LogUtil.e(message);
                 }
             }).setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)

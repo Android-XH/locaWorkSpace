@@ -1,8 +1,7 @@
 package com.example.worktools.rxjava.observer;
 
-import com.example.worktools.model.CallBack;
 import com.example.worktools.model.ProgressCallBack;
-import com.example.worktools.util.Logx;
+import com.example.worktools.util.LogUtil;
 
 import io.reactivex.observers.DefaultObserver;
 import okhttp3.ResponseBody;
@@ -18,7 +17,7 @@ public abstract class FileUploadObserver<T> extends DefaultObserver<T> {
         FileUploadObserver fileUploadObserver=new FileUploadObserver(callBack) {
             @Override
             public void onComplete() {
-                Logx.e("上传完成");
+                LogUtil.e("上传完成");
             }
         };
         return fileUploadObserver;

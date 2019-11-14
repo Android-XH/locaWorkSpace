@@ -1,6 +1,5 @@
 package com.example.shop.presenter;
 
-import com.example.shop.bean.Product;
 import com.example.shop.bean.array.Pagination;
 import com.example.shop.bean.array.ProductList;
 import com.example.shop.mode.impl.ProductModeImpl;
@@ -8,9 +7,6 @@ import com.example.shop.viewImpl.IHomeView;
 import com.example.worktools.adapter.LoadStatus;
 import com.example.worktools.model.CallBack;
 import com.example.worktools.presenter.BasePresenter;
-import com.example.worktools.util.Logx;
-
-import java.util.List;
 
 public class HomePresenter extends BasePresenter<ProductModeImpl, IHomeView> {
     private Pagination pagination;

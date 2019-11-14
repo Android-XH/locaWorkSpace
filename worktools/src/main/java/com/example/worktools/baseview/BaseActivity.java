@@ -41,10 +41,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
     private final int mRequestCode = 1024;
     private RequestPermissionCallBack mRequestPermissionCallBack;
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setFullscreen();
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         mUnBinder = ButterKnife.bind(this);
@@ -57,21 +55,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
             progressDialog = CustomProgressDialog.createDialog(this);
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void setFullscreen() {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        winParams.flags |= bits;
-        win.setAttributes(winParams);
-    }
 
     protected abstract int getLayout();
     protected abstract T initPresent();
-
     protected abstract void initData(Bundle bundle);
 
-    protected T getPresenter() {
+    protected T getBasePresenter() {
         return presenter;
     }
 

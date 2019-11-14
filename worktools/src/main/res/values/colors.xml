@@ -15,6 +15,7 @@
     <color name="black_8f">#FF8F8F8F</color>
     <color name="black_97">#979797</color>
     <color name="black_99">#FF999999</color>
+    <color name="black_tran_80_99">#80000000</color>
     <color name="black_bd">#FFBDBDBD</color>
     <color name="black_cc">#FFCCCCCC</color>
     <color name="black_cd">#FFCDCDCD</color>
