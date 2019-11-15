@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+
 import com.example.shop.AppBaseActivity;
 import com.example.shop.R;
 import com.example.shop.adapter.ProductAdapter;
@@ -21,7 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHomeView {
+public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHomeView, OnRefreshListener, OnLoadMoreListener {
     @BindView(R.id.product_list)
     ListView productList;
     @BindView(R.id.refreshLayout)
@@ -47,18 +49,8 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
     @Override
     protected void initView() {
         setTitle(R.string.home);
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getPresenter().loadRefresh();
-            }
-        });
-        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(RefreshLayout refreshlayout) {
-                getPresenter().loadMore();
-            }
-        });
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setOnLoadMoreListener(this);
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -70,13 +62,30 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
     @Override
     public void onLoadList(List<Product.Data> dataList) {
         adapter.setList(dataList);
-        refreshLayout.finishRefresh(true);
+    }
+
+    @Override
+    public void onFinishRefresh(boolean isSuccess) {
+        refreshLayout.finishRefresh(isSuccess);
     }
 
     @Override
     public void onLoadMore(List<Product.Data> dataList) {
         adapter.addList(dataList);
-        refreshLayout.finishLoadMore(true);
     }
 
+    @Override
+    public void onFinishMore(boolean isSuccess) {
+        refreshLayout.finishLoadMore(isSuccess);
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        getPresenter().loadRefresh();
+    }
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        getPresenter().loadMore();
+    }
 }

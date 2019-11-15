@@ -47,9 +47,11 @@ public class HomePresenter extends BasePresenter<ProductModeImpl, IHomeView> {
                 switch (status) {
                     case LOAD_MORE:
                         getView().onLoadMore(productList.getData());
+                        getView().onFinishMore(true);
                         break;
                     case LOAD_REFRESH:
                         getView().onLoadList(productList.getData());
+                        getView().onFinishRefresh(true);
                         break;
                 }
 
@@ -59,6 +61,14 @@ public class HomePresenter extends BasePresenter<ProductModeImpl, IHomeView> {
             public void onFail(String msg) {
                 if (getView() != null) {
                     getView().showToastMsg(msg);
+                    switch (status) {
+                        case LOAD_MORE:
+                            getView().onFinishMore(false);
+                            break;
+                        case LOAD_REFRESH:
+                            getView().onFinishRefresh(false);
+                            break;
+                    }
                 }
 
             }

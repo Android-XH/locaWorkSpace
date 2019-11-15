@@ -3,4 +3,6 @@
     <string name="home">首页</string>
     <string name="rmb">￥</string>
     <string name="title">this is title...</string>
+    <string name="tmall">天猫</string>
+    <string name="shipping">发货</string>
 </resources>

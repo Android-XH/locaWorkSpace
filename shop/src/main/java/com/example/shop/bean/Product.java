@@ -34,6 +34,9 @@ public class Product extends BaseBean{
         private int coupon_remain_count;
         private String coupon_share_url;
         private String coupon_info;
+        private String shop_title;
+        private String shop_city;
+
 
         protected Data(Parcel in) {
             id = in.readInt();
@@ -51,6 +54,29 @@ public class Product extends BaseBean{
             coupon_remain_count = in.readInt();
             coupon_share_url = in.readString();
             coupon_info = in.readString();
+            shop_title = in.readString();
+            shop_city = in.readString();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(id);
+            dest.writeLong(pid);
+            dest.writeString(detail_url);
+            dest.writeString(short_title);
+            dest.writeString(title);
+            dest.writeInt(sell_count);
+            dest.writeFloat(price);
+            dest.writeString(description);
+            dest.writeString(img_url);
+            dest.writeStringList(small_images);
+            dest.writeFloat(coupon_amount);
+            dest.writeInt(coupon_total_count);
+            dest.writeInt(coupon_remain_count);
+            dest.writeString(coupon_share_url);
+            dest.writeString(coupon_info);
+            dest.writeString(shop_title);
+            dest.writeString(shop_city);
         }
 
         public static final Creator<Data> CREATOR = new Creator<Data>() {
@@ -69,20 +95,35 @@ public class Product extends BaseBean{
         public String toString() {
             return "Data{" +
                     "id=" + id +
-                    ", pid=" + pid +
                     ", short_title='" + short_title + '\'' +
                     ", title='" + title + '\'' +
                     ", sell_count=" + sell_count +
                     ", price=" + price +
                     ", description='" + description + '\'' +
-                    ", img_url='" + img_url + '\'' +
-                    ", small_images=" + small_images +
                     ", coupon_amount=" + coupon_amount +
                     ", coupon_total_count=" + coupon_total_count +
                     ", coupon_remain_count=" + coupon_remain_count +
                     ", coupon_share_url='" + coupon_share_url + '\'' +
                     ", coupon_info='" + coupon_info + '\'' +
+                    ", shop_title='" + shop_title + '\'' +
+                    ", shop_city='" + shop_city + '\'' +
                     '}';
+        }
+
+        public String getShop_title() {
+            return shop_title;
+        }
+
+        public void setShop_title(String shop_title) {
+            this.shop_title = shop_title;
+        }
+
+        public String getShop_city() {
+            return shop_city;
+        }
+
+        public void setShop_city(String shop_city) {
+            this.shop_city = shop_city;
         }
 
         public int getId() {
@@ -208,25 +249,6 @@ public class Product extends BaseBean{
         @Override
         public int describeContents() {
             return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(id);
-            dest.writeLong(pid);
-            dest.writeString(detail_url);
-            dest.writeString(short_title);
-            dest.writeString(title);
-            dest.writeInt(sell_count);
-            dest.writeFloat(price);
-            dest.writeString(description);
-            dest.writeString(img_url);
-            dest.writeStringList(small_images);
-            dest.writeFloat(coupon_amount);
-            dest.writeInt(coupon_total_count);
-            dest.writeInt(coupon_remain_count);
-            dest.writeString(coupon_share_url);
-            dest.writeString(coupon_info);
         }
     }
 }
