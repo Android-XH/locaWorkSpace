@@ -5,4 +5,6 @@
     <string name="title">this is title...</string>
     <string name="tmall">天猫</string>
     <string name="shipping">发货</string>
+    <string name="share">分享</string>
+    <string name="get_coupon">领取优惠券</string>
 </resources>
