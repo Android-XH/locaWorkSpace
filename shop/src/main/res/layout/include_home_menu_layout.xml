@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:padding="@dimen/layout_padding"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+    <TextView
+        style="@style/HomeMenu"
+        android:drawableTop="@drawable/icon_yf"
+        android:text="@string/clothes"
+        android:id="@+id/tv_clothes"
+        />
+    <TextView
+        style="@style/HomeMenu"
+        android:drawableTop="@drawable/icon_sp"
+        android:text="@string/accessories"
+        android:id="@+id/tv_accessories"
+        />
+    <TextView
+        style="@style/HomeMenu"
+        android:drawableTop="@drawable/icon_mz"
+        android:text="@string/cosmetics"
+        android:id="@+id/tv_cosmetics"
+        />
+    <TextView
+        style="@style/HomeMenu"
+        android:drawableTop="@drawable/icon_xb"
+        android:text="@string/bag"
+        android:id="@+id/tv_bag"
+        />
+</LinearLayout>

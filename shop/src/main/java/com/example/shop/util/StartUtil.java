@@ -9,8 +9,12 @@ import com.example.shop.common.IntentKey;
 import com.example.worktools.util.BaseStart;
 
 public class StartUtil extends BaseStart{
+    private static StartUtil startUtil;
     public static StartUtil getInstance(){
-        return new StartUtil();
+        if(startUtil==null){
+            startUtil=new StartUtil();
+        }
+        return startUtil;
     }
     public void startProductDetail(Activity activity, Product.Data data){
         Bundle bundle=new Bundle();

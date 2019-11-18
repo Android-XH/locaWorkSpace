@@ -37,10 +37,10 @@ public class ProductAdapter extends ListAdapter<Product.Data> {
         }
         GlideUtil.getInstance().loadImg(data.getImg_url(),holder.imvSrc);
         holder.tvTitle.setText(data.getShort_title());
-        holder.tvPrice.setText(String.format("%.1f",data.getPrice()));
-        holder.tvNewPrice.setText(String.format("%.1f",data.getPrice()-data.getCoupon_amount()));
+        holder.tvPrice.setText(String.format(getContext().getString(R.string.priceFormat),data.getPrice()));
+        holder.tvNewPrice.setText(String.format(getContext().getString(R.string.priceFormat),data.getPrice()-data.getCoupon_amount()));
         holder.tvProductDesc.setText(data.getDescription());
-        holder.tvCouponInfo.setText("优惠券"+data.getCoupon_info());
+        holder.tvCouponInfo.setText(data.getCoupon_info());
         return convertView;
     }
 

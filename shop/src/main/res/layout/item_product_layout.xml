@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_select"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -20,72 +21,65 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_padding"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/layout_padding"
             android:layout_toEndOf="@+id/imv_src"
             android:layout_toRightOf="@+id/imv_src"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title"
+                style="@style/TextProductItemTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title"
-                android:textColor="@color/black_33"
-                android:textSize="@dimen/sp16" />
+                android:text="@string/title" />
 
             <TextView
                 android:id="@+id/tv_product_desc"
+                style="@style/TextProductDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lines="2"
-                android:textColor="@color/black_99"
-                android:textSize="@dimen/sp14" />
+                android:lines="2" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_coupon_info"
+                style="@style/TextProductCoupon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rmb"
-                    android:textColor="@color/black_33"
-                    android:textSize="@dimen/sp16" />
-
-                <com.example.shop.view.LineTextView
-                    android:id="@+id/tv_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="123"
-                    android:textColor="@color/black_99"
-                    android:textSize="@dimen/sp13" />
-
-                <TextView
-                    android:id="@+id/tv_new_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/sp16" />
-            </LinearLayout>
+                android:text="优惠券满100-30" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp">
 
-                <TextView
-                    android:id="@+id/tv_coupon_info"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/shape_layout_red_50dp"
-                    android:text="优惠券满100-30"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/sp12" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextProductRMBPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <com.example.shop.view.LineTextView
+                        android:id="@+id/tv_price"
+                        style="@style/TextProductOldPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="123" />
+
+                    <TextView
+                        android:id="@+id/tv_new_price"
+                        style="@style/TextProductNewPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="123" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"

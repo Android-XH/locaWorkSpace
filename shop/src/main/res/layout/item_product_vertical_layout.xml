@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/layout_padding"
+    android:gravity="center"
+    android:background="@drawable/item_select"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imv_product_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/icon_default_avatar" />
+
+    <TextView
+        style="@style/TextProductItemTitle"
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_coupon_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="满100-30"
+            style="@style/TextProductCoupon" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextProductRMBPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.example.shop.view.LineTextView
+                android:id="@+id/tv_price"
+                style="@style/TextProductOldPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123" />
+
+            <TextView
+                android:id="@+id/tv_new_price"
+                style="@style/TextProductNewPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="123" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

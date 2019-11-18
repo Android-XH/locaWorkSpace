@@ -46,5 +46,7 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.5.0'
     api 'com.squareup.okhttp3:okhttp:3.12.1'
     api 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    //recycleview
+    api 'androidx.recyclerview:recyclerview:1.1.0-rc01'
 
 }

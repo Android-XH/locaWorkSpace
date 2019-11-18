@@ -1,6 +1,7 @@
 package com.example.shop.mode.impl;
 
 import com.example.shop.api.Method;
+import com.example.shop.api.param.BaseParam;
 import com.example.shop.bean.Product;
 import com.example.shop.bean.array.BaseArray;
 import com.example.shop.bean.array.Pagination;
@@ -15,8 +16,8 @@ import static com.example.shop.api.param.ErrMessage.*;
 
 public class ProductModeImpl extends BaseAppMode implements IProductMode {
     @Override
-    public void getProductList(Pagination pagination, final CallBack<ProductList> callBack) {
-        get(Method.GET_PRODUCT_LIST,getParam().getProductList(pagination), new CallBack() {
+    public void getProductList(BaseParam baseParam, CallBack<ProductList> callBack) {
+        get(Method.GET_PRODUCT_LIST,getParam().getProductList(baseParam), new CallBack() {
             @Override
             public void onSuccess(Object o) {
                 ProductList productList= GsonUtil.parseData(o,ProductList.class);

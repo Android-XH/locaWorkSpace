@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.shop.AppBaseActivity;
 import com.example.shop.R;
 import com.example.shop.adapter.ProductImageAdapter;
+import com.example.shop.adapter.ProductVerticalAdapter;
 import com.example.shop.bean.Product;
 import com.example.shop.common.IntentKey;
 import com.example.shop.presenter.ProductDetailPresenter;
+import com.example.shop.util.StartUtil;
 import com.example.shop.view.LineTextView;
 import com.example.shop.viewImpl.IProductDetailView;
+import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
 import com.example.worktools.util.DpUtil;
 import com.example.worktools.view.ImageTextViewPager;
 
@@ -21,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresenter> implements IProductDetailView {
+public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresenter> implements IProductDetailView, OnRecycleItemClickListener<Product.Data> {
     @BindView(R.id.img_text_view_page)
     ImageTextViewPager imgTextViewPage;
     @BindView(R.id.tv_shop_title)
@@ -38,9 +44,11 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
     TextView tvProductTitle;
     @BindView(R.id.tv_price)
     LineTextView tvPrice;
+    @BindView(R.id.recycleView)
+    RecyclerView recycleView;
     private Product.Data data;
     private ProductImageAdapter adapter;
-
+    private ProductVerticalAdapter verticalAdapter;
     @Override
     protected int setContentView() {
         return R.layout.activity_product_detail;
@@ -49,8 +57,6 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
     @Override
     protected void initAppData(Bundle bundle) {
         data = bundle.getParcelable(IntentKey.PRODUCT_DATA);
-        adapter = new ProductImageAdapter(this);
-        imgTextViewPage.setAdapter(adapter);
     }
 
     @Override
@@ -61,6 +67,16 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
         layoutParams.width = width;
         layoutParams.height = width;
         imgTextViewPage.setLayoutParams(layoutParams);
+        adapter = new ProductImageAdapter(this);
+        imgTextViewPage.setAdapter(adapter);
+        verticalAdapter=new ProductVerticalAdapter(this);
+        verticalAdapter.setOnRecycleItemClickListener(this);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+        recycleView.setLayoutManager(gridLayoutManager);
+        recycleView.setAdapter(verticalAdapter);
+        recycleView.setNestedScrollingEnabled(false); //禁止滑动
+        recycleView.setFocusable(false);
     }
 
     @Override
@@ -77,10 +93,19 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
         tvPrice.setText(String.format("%.1f", data.getPrice()));
         tvNewPrice.setText(String.format("%.1f", data.getPrice() - data.getCoupon_amount()));
         tvLocation.setText(data.getShop_city());
-        tvVolume.setText("已售："+data.getSell_count());
+        tvVolume.setText("已售：" + data.getSell_count());
         List<String> imageList = data.getSmall_images();
         imageList.add(0, data.getImg_url());
         adapter.setData(imageList);
     }
 
+    @Override
+    public void onLoadProductList(List<Product.Data> dataList) {
+        verticalAdapter.setDataList(dataList);
+    }
+
+    @Override
+    public void onItemClick(Product.Data data, int position) {
+        StartUtil.getInstance().startProductDetail(this,data);
+    }
 }

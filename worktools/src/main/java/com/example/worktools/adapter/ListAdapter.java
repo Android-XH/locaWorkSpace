@@ -1,6 +1,7 @@
 package com.example.worktools.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ public abstract class ListAdapter<T> extends BaseAdapter{
 	protected List<T> mList;
 	protected ListView mListView;
 	protected LayoutInflater inflater;
+	private Context context;
 	public ListAdapter(Activity context){
+		this.context=context;
 		this.inflater=LayoutInflater.from(context);
 	}
 
@@ -26,6 +29,9 @@ public abstract class ListAdapter<T> extends BaseAdapter{
 			return 0;
 	}
 
+	public Context getContext(){
+		return  context;
+	}
 	@Override
 	public T getItem(int position) {
 		return mList == null ? null : mList.get(position);

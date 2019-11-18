@@ -7,5 +7,46 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="TextProductRMBPrice">
+        <item name="android:textColor">@color/black_66</item>
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:text">￥</item>
+    </style>
+    <style name="TextProductOldPrice">
+        <item name="android:textColor">@color/black_99</item>
+        <item name="android:textSize">@dimen/sp13</item>
+    </style>
+    <style name="TextProductNewPrice">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/sp16</item>
+    </style>
+    <style name="TextProductItemTitle">
+        <item name="android:textColor">@color/black_66</item>
+        <item name="android:textSize">@dimen/sp15</item>
+    </style>
+    <style name="TextProductCoupon">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:background">@drawable/shape_layout_red_50dp</item>
+    </style>
+    <style name="TextProductDesc">
+        <item name="android:textColor">@color/black_66</item>
+        <item name="android:textSize">@dimen/sp15</item>
+    </style>
+    <style name="HomeMenu">
+        <item name="android:drawablePadding">@dimen/view_padding</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textColor">@color/black_66</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/button_white</item>
+    </style>
+    <style name="TextContentTitle">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black_33</item>
+        <item name="android:textSize">@dimen/sp15</item>
+        <item name="android:padding">@dimen/layout_padding</item>
+    </style>
 </resources>

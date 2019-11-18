@@ -5,6 +5,14 @@ public class Pagination{
     private int total;
     private int size;
 
+    public Pagination() {
+    }
+
+    public Pagination(int page, int size) {
+        this.page = page;
+        this.size = size;
+    }
+
     public int getPage() {
         return page;
     }
@@ -22,7 +30,7 @@ public class Pagination{
     }
 
     public int getSize() {
-        return size==0?20:size;
+        return size;
     }
 
     public void setSize(int size) {

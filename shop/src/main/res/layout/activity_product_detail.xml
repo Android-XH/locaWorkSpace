@@ -7,174 +7,200 @@
 
     <include layout="@layout/include_title_layout" />
 
-    <com.example.worktools.view.ImageTextViewPager
-        android:id="@+id/img_text_view_page"
-        android:layout_below="@+id/rl_title_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:orientation="vertical" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom_layout"
+        android:layout_below="@+id/rl_title_layout">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ll_product_layout"
-        android:layout_below="@+id/img_text_view_page"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="@dimen/layout_padding">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_shop_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="衣服专卖店"
-                android:textColor="@color/black_66"
-                android:textSize="@dimen/sp16" />
+            <com.example.worktools.view.ImageTextViewPager
+                android:id="@+id/img_text_view_page"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical" />
 
             <LinearLayout
-                android:id="@+id/ll_price"
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_product_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_padding">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_shop_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="衣服专卖店"
+                        android:textColor="@color/black_66"
+                        android:textSize="@dimen/sp16" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rmb"
+                            android:textColor="@color/black_33"
+                            android:textSize="@dimen/sp16" />
+
+                        <com.example.shop.view.LineTextView
+                            android:id="@+id/tv_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="123"
+                            android:textColor="@color/black_99"
+                            android:textSize="@dimen/sp15" />
+
+                        <TextView
+                            android:id="@+id/tv_new_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="123.03"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/sp20" />
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_product_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/rmb"
+                    android:layout_marginTop="@dimen/layout_padding"
+                    android:text="自产自销特卖尼龙袜，保暖衣加绒睡衣，羽绒服皮衣自产自销特卖尼龙袜自产自销特卖尼龙袜自产自销特卖尼龙袜"
                     android:textColor="@color/black_33"
-                    android:textSize="@dimen/sp16" />
-
-                <com.example.shop.view.LineTextView
-                    android:id="@+id/tv_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="123"
-                    android:textColor="@color/black_99"
                     android:textSize="@dimen/sp15" />
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding">
+
+                    <TextView
+                        android:id="@+id/tv_coupon_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_layout_red_50dp"
+                        android:text="优惠券满100-30"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/sp12" />
+
+                    <TextView
+                        android:id="@+id/tv_volume"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:text="已售：1000"
+                        android:textColor="@color/black_99"
+                        android:textSize="@dimen/sp15" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_padding"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="@dimen/layout_padding">
+
                 <TextView
-                    android:id="@+id/tv_new_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:text="123.03"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/sp20" />
+                    android:text="@string/shipping"
+                    android:textColor="@color/black_99"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/icon_location"
+                    android:drawablePadding="5dp"
+                    android:text="浙江杭州"
+                    android:textColor="@color/black_66"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_padding"
+                    android:layout_marginRight="@dimen/layout_padding"
+                    android:text="|"
+                    android:textColor="@color/black_99"
+                    android:textSize="@dimen/sp13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="快递：0.0"
+                    android:textColor="@color/black_66"
+                    android:textSize="@dimen/sp14" />
             </LinearLayout>
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_padding"
-            android:id="@+id/tv_product_title"
-            android:text="自产自销特卖尼龙袜，保暖衣加绒睡衣，羽绒服皮衣自产自销特卖尼龙袜自产自销特卖尼龙袜自产自销特卖尼龙袜"
-            android:textColor="@color/black_33"
-            android:textSize="@dimen/sp15" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_padding">
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_coupon_info"
-                android:background="@drawable/shape_layout_red_50dp"
-                android:text="优惠券满100-30"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/sp12" />
+                android:layout_marginTop="@dimen/layout_padding"
+                style="@style/TextContentTitle"
+                android:text="@string/same_recommend"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:id="@+id/recycleView"
+                />
+        </LinearLayout>
+    </ScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:id="@+id/tv_volume"
-                android:text="已售：1000"
-                android:textColor="@color/black_99"
-                android:textSize="@dimen/sp15" />
-        </RelativeLayout>
-    </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_padding"
-        android:padding="@dimen/layout_padding"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_below="@+id/ll_product_layout"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/shipping"
-            android:textSize="@dimen/sp14"
-            android:textColor="@color/black_99"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_location"
-            android:layout_marginLeft="20dp"
-            android:drawableLeft="@drawable/icon_location"
-            android:drawablePadding="5dp"
-            android:text="浙江杭州"
-            android:textSize="@dimen/sp14"
-            android:textColor="@color/black_66"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/layout_padding"
-            android:layout_marginRight="@dimen/layout_padding"
-            android:text="|"
-            android:textColor="@color/black_99"
-            android:textSize="@dimen/sp13"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp14"
-            android:textColor="@color/black_66"
-            android:text="快递：0.0"
-            />
-    </LinearLayout>
-    <LinearLayout
+        android:id="@+id/ll_bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:text="@string/share"
-            android:textSize="@dimen/sp16"
-            android:textColor="@color/white"
-            android:background="@drawable/button_red"
+            android:layout_marginEnd="0.25dp"
             android:layout_marginRight="0.25dp"
-            android:layout_marginEnd="0.25dp" />
+            android:layout_weight="1"
+            android:background="@drawable/button_red"
+            android:gravity="center"
+            android:text="@string/share"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="@dimen/sp16"
-            android:textColor="@color/white"
+            android:layout_marginStart="0.25dp"
+            android:layout_marginLeft="0.25dp"
+            android:layout_weight="1"
             android:background="@drawable/button_red"
             android:gravity="center"
             android:text="@string/get_coupon"
-            android:layout_weight="1"
-            android:layout_marginLeft="0.25dp"
-            android:layout_marginStart="0.25dp" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
     </LinearLayout>
 </RelativeLayout>
