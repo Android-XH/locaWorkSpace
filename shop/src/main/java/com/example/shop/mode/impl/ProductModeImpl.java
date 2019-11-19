@@ -2,7 +2,9 @@ package com.example.shop.mode.impl;
 
 import com.example.shop.api.Method;
 import com.example.shop.api.param.BaseParam;
+import com.example.shop.api.param.ErrMessage;
 import com.example.shop.bean.Product;
+import com.example.shop.bean.TaoKey;
 import com.example.shop.bean.array.BaseArray;
 import com.example.shop.bean.array.Pagination;
 import com.example.shop.bean.array.ProductList;
@@ -80,6 +82,30 @@ public class ProductModeImpl extends BaseAppMode implements IProductMode {
                 }
 
             }
+            @Override
+            public void onFail(String msg) {
+                callBack.onFail(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getTaoKey(int id, CallBack<TaoKey> callBack) {
+        get(Method.GET_TAO_KEY, getParam().getProductList(id), new CallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                TaoKey taoKey=GsonUtil.parseData(o,TaoKey.class);
+                if(taoKey!=null){
+                    if(taoKey.isSuccess()){
+                        callBack.onSuccess(taoKey);
+                    }else{
+                        callBack.onFail(taoKey.getMsg());
+                    }
+                }else{
+                    callBack.onFail(NULL_BEAN);
+                }
+            }
+
             @Override
             public void onFail(String msg) {
                 callBack.onFail(msg);

@@ -112,5 +112,6 @@
     <string name="pull_to_refresh_from_bottom_pull_up_label">@string/pull_to_refresh_pull_up_label</string>
     <string name="no_open_tools">无可用打开方式</string>
     <string name="send">发送</string>
+    <string name="empty_input">请输入搜索关键词</string>
 
 </resources>

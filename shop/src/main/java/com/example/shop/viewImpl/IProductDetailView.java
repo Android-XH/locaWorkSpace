@@ -8,4 +8,5 @@ import java.util.List;
 public interface IProductDetailView extends BaseView {
     void onLoadProduct(Product.Data data);
     void onLoadProductList(List<Product.Data> dataList);
+    void onLoadKey(String key);
 }

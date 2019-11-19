@@ -2,6 +2,7 @@ package com.example.shop.presenter;
 
 import com.example.shop.api.param.BaseParam;
 import com.example.shop.bean.Product;
+import com.example.shop.bean.TaoKey;
 import com.example.shop.bean.array.Pagination;
 import com.example.shop.bean.array.ProductList;
 import com.example.shop.mode.IProductMode;
@@ -51,6 +52,19 @@ public class ProductDetailPresenter extends BasePresenter<IProductMode, IProduct
             @Override
             public void onSuccess(ProductList productList) {
                 getView().onLoadProductList(productList.getData());
+            }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+        });
+    }
+    public void getTaoKey(){
+        getMode().getTaoKey(id, new CallBack<TaoKey>() {
+            @Override
+            public void onSuccess(TaoKey taoKey) {
+                getView().onLoadKey(taoKey.getData());
             }
 
             @Override

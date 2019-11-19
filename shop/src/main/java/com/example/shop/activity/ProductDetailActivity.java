@@ -1,6 +1,8 @@
 package com.example.shop.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +24,18 @@ import com.example.shop.view.LineTextView;
 import com.example.shop.viewImpl.IProductDetailView;
 import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
 import com.example.worktools.recycle.SpacesItemDecoration;
+import com.example.worktools.util.CheckApkExist;
 import com.example.worktools.util.DpUtil;
 import com.example.worktools.view.ImageTextViewPager;
 
+import java.io.File;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
+import static com.example.worktools.util.CheckApkExist.taobaoPkgName;
 import static com.example.worktools.util.DpUtil.dip2px;
 
 public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresenter> implements IProductDetailView, OnRecycleItemClickListener<Product.Data> {
@@ -54,6 +60,8 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
     private Product.Data data;
     private ProductImageAdapter adapter;
     private ProductVerticalAdapter verticalAdapter;
+
+    private String couponUrl;
     @Override
     protected int setContentView() {
         return R.layout.activity_product_detail;
@@ -74,9 +82,9 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
         imgTextViewPage.setLayoutParams(layoutParams);
         adapter = new ProductImageAdapter(this);
         imgTextViewPage.setAdapter(adapter);
-        verticalAdapter=new ProductVerticalAdapter(this);
+        verticalAdapter = new ProductVerticalAdapter(this);
         verticalAdapter.setOnRecycleItemClickListener(this);
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         recycleView.addItemDecoration(new SpacesItemDecoration(dip2px(5), dip2px(5), getResources().getColor(R.color.line)));
         recycleView.setLayoutManager(gridLayoutManager);
@@ -91,11 +99,12 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public void onLoadProduct(Product.Data data) {
+        couponUrl=data.getCoupon_share_url();
         tvShopTitle.setText(data.getShop_title());
         tvProductTitle.setText(data.getTitle());
-        if(StringUtil.isNoEmpty(data.getCoupon_info())){
+        if (StringUtil.isNoEmpty(data.getCoupon_info())) {
             tvCouponInfo.setText(data.getCoupon_info());
-        }else{
+        } else {
             tvCouponInfo.setVisibility(View.INVISIBLE);
         }
         tvPrice.setText(String.format("%.1f", data.getPrice()));
@@ -113,7 +122,32 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
     }
 
     @Override
-    public void onItemClick(Product.Data data, int position) {
-        StartUtil.getInstance().startProductDetail(this,data);
+    public void onLoadKey(String key) {
+        Intent intent = getPackageManager().getLaunchIntentForPackage(taobaoPkgName);
+        startActivity(intent);
     }
+
+    @Override
+    public void onItemClick(Product.Data data, int position) {
+        StartUtil.getInstance().startProductDetail(this, data);
+    }
+
+    @OnClick({R.id.tv_share, R.id.tv_get_coupon})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_share:
+
+                break;
+            case R.id.tv_get_coupon:
+                if(CheckApkExist.checkTaoBao(this)){
+                    getPresenter().getTaoKey();
+                }else{
+                    Uri uri = Uri.parse(couponUrl);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
+                break;
+        }
+    }
+
 }

@@ -190,7 +190,9 @@
             android:gravity="center"
             android:text="@string/share"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp16" />
+            android:textSize="@dimen/sp16"
+            android:id="@+id/tv_share"
+            />
 
         <TextView
             android:layout_width="0dp"
@@ -202,6 +204,8 @@
             android:gravity="center"
             android:text="@string/get_coupon"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp16" />
+            android:textSize="@dimen/sp16"
+            android:id="@+id/tv_get_coupon"
+            />
     </LinearLayout>
 </RelativeLayout>

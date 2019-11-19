@@ -47,13 +47,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
         setContentView(getLayout());
         mUnBinder = ButterKnife.bind(this);
         initData(getIntent().getExtras());
-        initProgressDialog();
         loadData();
-    }
-    public void initProgressDialog() {
-        if (progressDialog == null) {
-            progressDialog = CustomProgressDialog.createDialog(this);
-        }
     }
 
     protected abstract int getLayout();
@@ -210,11 +204,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
 
     @Override
     public void showLoading(String msg) {
-        if(progressDialog!=null&&!progressDialog.isShowing()){
+        if(progressDialog==null){
+            progressDialog = CustomProgressDialog.createDialog(this);
+        }
+        if(!progressDialog.isShowing()){
             progressDialog.setMessage(msg).show();
         }
-
-
     }
 
     @Override
