@@ -3,11 +3,12 @@ package com.example.worktools.presenter;
 
 import com.example.worktools.baseview.BaseView;
 import com.example.worktools.model.BaseMode;
+import com.example.worktools.model.IBaseMode;
 
 /**
  * Created by xuhao on 2017/11/21.
  */
-public abstract class BasePresenter<M extends BaseMode, V extends BaseView> implements IBasePresenter {
+public abstract class BasePresenter<M extends IBaseMode, V extends BaseView> implements IBasePresenter {
     private M mMode;
     private V mView;
     private boolean isFirst = true;

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/layout_padding"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:id="@+id/et_search"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:hint="请输入关键词..."
+        android:textColorHint="@color/black_99"
+        android:textColor="@color/black_66"
+        android:paddingLeft="@dimen/layout_padding"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/shape_layout_gray_white_50dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/layout_padding"
+        android:text="@string/search"
+        android:id="@+id/tv_search"
+        />
+</LinearLayout>

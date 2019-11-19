@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/include_title_layout"/>
+    <include layout="@layout/include_search_layout"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/layout_padding"
+        android:textColor="@color/black_99"
+        android:textSize="@dimen/sp15"
+        android:text="@string/hot_search"
+        />
+    <com.example.worktools.view.flowlayout.TagFlowLayout
+        android:id="@+id/flowlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:max_select="1"
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingRight="@dimen/layout_padding"
+        />
+</LinearLayout>

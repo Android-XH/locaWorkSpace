@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public interface IBaseMode {
     void onDestroy();
+    void get(String method,CallBack callBack);
     void get(String method,HashMap<String,String> map, CallBack callBack);
     void post(String method,HashMap<String,String>map,CallBack callBack);
     void uploadFile(String method,String filePath,HashMap<String,String>map,ProgressCallBack callBack);

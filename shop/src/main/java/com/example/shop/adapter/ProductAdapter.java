@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.shop.R;
 import com.example.shop.bean.Product;
+import com.example.shop.util.StringUtil;
 import com.example.shop.view.LineTextView;
 import com.example.worktools.adapter.ListAdapter;
 import com.example.worktools.util.GlideUtil;
@@ -40,7 +41,12 @@ public class ProductAdapter extends ListAdapter<Product.Data> {
         holder.tvPrice.setText(String.format(getContext().getString(R.string.priceFormat),data.getPrice()));
         holder.tvNewPrice.setText(String.format(getContext().getString(R.string.priceFormat),data.getPrice()-data.getCoupon_amount()));
         holder.tvProductDesc.setText(data.getDescription());
-        holder.tvCouponInfo.setText(data.getCoupon_info());
+        if(StringUtil.isNoEmpty(data.getCoupon_info())){
+            holder.tvCouponInfo.setVisibility(View.VISIBLE);
+            holder.tvCouponInfo.setText(data.getCoupon_info());
+        }else{
+            holder.tvCouponInfo.setVisibility(View.INVISIBLE);
+        }
         return convertView;
     }
 

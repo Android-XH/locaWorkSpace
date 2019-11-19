@@ -18,6 +18,16 @@ public abstract class ImageViewAdapter<T> extends PagerAdapter {
     private List<T> data;
     private List<View>viewList;
     private Context mContext;
+    private onItemClickListener<T> onItemClickListener;
+
+    public ImageViewAdapter.onItemClickListener<T> getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(ImageViewAdapter.onItemClickListener<T> onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public ImageViewAdapter(Activity activity) {
         this.mContext=activity;
     }
@@ -37,16 +47,21 @@ public abstract class ImageViewAdapter<T> extends PagerAdapter {
     protected abstract View getContentView(int position, View view, T data);
     @NonNull
     @Override
-    public View instantiateItem(ViewGroup container, int position) {
+    public View instantiateItem(ViewGroup container, final int position) {
         View view;
         if(viewList.get(position)==null){
             view= LayoutInflater.from(mContext).inflate(getLayout(),null);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(getOnItemClickListener()!=null){
+                        getOnItemClickListener().onItemClick(data.get(position));
+                    }
+                }
+            });
             viewList.add(position,view);
         }else{
             view=viewList.get(position);
-        }
-        if(view.getTag()!=null){
-            LogUtil.e(view.getTag().toString());
         }
         container.addView(view);
         return getContentView(position,view,data.get(position));
@@ -64,5 +79,8 @@ public abstract class ImageViewAdapter<T> extends PagerAdapter {
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
+    }
+    public interface onItemClickListener<T>{
+        void onItemClick(T t);
     }
 }

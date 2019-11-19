@@ -2,6 +2,7 @@ package com.example.shop.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -16,9 +17,11 @@ import com.example.shop.bean.Product;
 import com.example.shop.common.IntentKey;
 import com.example.shop.presenter.ProductDetailPresenter;
 import com.example.shop.util.StartUtil;
+import com.example.shop.util.StringUtil;
 import com.example.shop.view.LineTextView;
 import com.example.shop.viewImpl.IProductDetailView;
 import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
+import com.example.worktools.recycle.SpacesItemDecoration;
 import com.example.worktools.util.DpUtil;
 import com.example.worktools.view.ImageTextViewPager;
 
@@ -26,6 +29,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.worktools.util.DpUtil.dip2px;
 
 public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresenter> implements IProductDetailView, OnRecycleItemClickListener<Product.Data> {
     @BindView(R.id.img_text_view_page)
@@ -73,10 +78,9 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
         verticalAdapter.setOnRecycleItemClickListener(this);
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+        recycleView.addItemDecoration(new SpacesItemDecoration(dip2px(5), dip2px(5), getResources().getColor(R.color.line)));
         recycleView.setLayoutManager(gridLayoutManager);
         recycleView.setAdapter(verticalAdapter);
-        recycleView.setNestedScrollingEnabled(false); //禁止滑动
-        recycleView.setFocusable(false);
     }
 
     @Override
@@ -89,7 +93,11 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
     public void onLoadProduct(Product.Data data) {
         tvShopTitle.setText(data.getShop_title());
         tvProductTitle.setText(data.getTitle());
-        tvCouponInfo.setText("优惠券" + data.getCoupon_info());
+        if(StringUtil.isNoEmpty(data.getCoupon_info())){
+            tvCouponInfo.setText(data.getCoupon_info());
+        }else{
+            tvCouponInfo.setVisibility(View.INVISIBLE);
+        }
         tvPrice.setText(String.format("%.1f", data.getPrice()));
         tvNewPrice.setText(String.format("%.1f", data.getPrice() - data.getCoupon_amount()));
         tvLocation.setText(data.getShop_city());

@@ -7,7 +7,7 @@
 
     <include layout="@layout/include_title_layout" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ll_bottom_layout"
@@ -161,6 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/layout_padding"
                 style="@style/TextContentTitle"
+                android:gravity="center"
                 android:text="@string/same_recommend"
                 />
             <androidx.recyclerview.widget.RecyclerView
@@ -170,7 +171,7 @@
                 android:id="@+id/recycleView"
                 />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/ll_bottom_layout"

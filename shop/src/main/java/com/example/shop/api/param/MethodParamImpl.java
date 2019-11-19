@@ -12,6 +12,9 @@ public class MethodParamImpl implements IMethodParam {
         Pagination pagination=baseParam.getPagination();
         paramCommon.put(PAGE,pagination.getPage());
         paramCommon.put(SIZE,pagination.getSize());
+        if(baseParam.getId()!=0){
+            paramCommon.put(ID,baseParam.getId());
+        }
         if(baseParam.getCategory_id()!=0){
             paramCommon.put(CATEGORY_ID,baseParam.getCategory_id());
         }

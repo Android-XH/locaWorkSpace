@@ -47,7 +47,10 @@ public abstract class BaseListRecyclerAdapter<T, VH extends RecyclerHolder> exte
         this.dataList = dataList;
         this.notifyDataSetChanged();
     }
-
+    public void addDataList(List<T> dataList) {
+        this.dataList.addAll(dataList);
+        this.notifyDataSetChanged();
+    }
     public void removeData(int position) {
         this.dataList.remove(position);
         this.notifyItemRemoved(position);

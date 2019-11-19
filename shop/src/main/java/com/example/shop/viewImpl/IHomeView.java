@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface IHomeView extends BaseView {
     void onFinishRefresh(boolean isSuccess);
-    void onLoadWomanClothes(List<Product.Data>dataList);
-    void onLoadManClothes(List<Product.Data>dataList);
-    void onLoadCosmetics(List<Product.Data>dataList);
-
+    void onLoadBanner(List<Product.Data>dataList);
+    void onLoadRefresh(List<Product.Data>dataList);
+    void onLoadMore(List<Product.Data>dataList);
 }

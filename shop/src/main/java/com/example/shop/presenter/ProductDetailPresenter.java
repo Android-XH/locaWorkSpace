@@ -4,12 +4,13 @@ import com.example.shop.api.param.BaseParam;
 import com.example.shop.bean.Product;
 import com.example.shop.bean.array.Pagination;
 import com.example.shop.bean.array.ProductList;
+import com.example.shop.mode.IProductMode;
 import com.example.shop.mode.impl.ProductModeImpl;
 import com.example.shop.viewImpl.IProductDetailView;
 import com.example.worktools.model.CallBack;
 import com.example.worktools.presenter.BasePresenter;
 
-public class ProductDetailPresenter extends BasePresenter<ProductModeImpl, IProductDetailView> {
+public class ProductDetailPresenter extends BasePresenter<IProductMode, IProductDetailView> {
     private int id;
 
     public ProductDetailPresenter(int id) {
@@ -19,7 +20,7 @@ public class ProductDetailPresenter extends BasePresenter<ProductModeImpl, IProd
     @Override
     public void getData() {
         getProductDetail(id);
-        getProductList();
+        getProductList(id);
     }
 
     @Override
@@ -39,11 +40,12 @@ public class ProductDetailPresenter extends BasePresenter<ProductModeImpl, IProd
             }
         });
     }
-    private void getProductList(){
+    private void getProductList(int id){
         Pagination pagination=new Pagination();
         pagination.setPage(1);
         pagination.setSize(6);
         BaseParam baseParam=new BaseParam();
+        baseParam.setId(id);
         baseParam.setPagination(pagination);
         getMode().getProductList(baseParam, new CallBack<ProductList>() {
             @Override

@@ -33,6 +33,12 @@ public abstract class BaseMode implements IBaseMode{
         return getHost()+method;
     }
     @Override
+    public void get(String method,CallBack callBack) {
+        observer=new BaseObserver(callBack);
+        Observable<Object> observable = RetroFactory.getInstance(getHost()).get(getBaseUrl(method));
+        observable.compose(RxSchedulers.compose()).subscribe(observer);
+    }
+    @Override
     public void get(String method,HashMap<String,String> map, CallBack callBack) {
         observer=new BaseObserver(callBack);
         Observable<Object> observable = RetroFactory.getInstance(getHost()).get(getBaseUrl(method),map);

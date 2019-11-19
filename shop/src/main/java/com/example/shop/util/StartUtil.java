@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.shop.activity.ProductDetailActivity;
+import com.example.shop.activity.SearchActivity;
+import com.example.shop.activity.SearchDataActivity;
 import com.example.shop.bean.Product;
 import com.example.shop.common.IntentKey;
 import com.example.worktools.util.BaseStart;
@@ -20,5 +22,13 @@ public class StartUtil extends BaseStart{
         Bundle bundle=new Bundle();
         bundle.putParcelable(IntentKey.PRODUCT_DATA,data);
         startActivity(activity,bundle,ProductDetailActivity.class);
+    }
+    public void startSearch(Activity activity){
+        startActivity(activity,SearchActivity.class);
+    }
+    public void startSearchData(Activity activity,String keyWord){
+        Bundle bundle=new Bundle();
+        bundle.putString(IntentKey.KEY_WORD,keyWord);
+        startActivity(activity,bundle, SearchDataActivity.class);
     }
 }

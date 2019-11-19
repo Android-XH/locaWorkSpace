@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop.R;
 import com.example.shop.bean.Product;
+import com.example.shop.util.StringUtil;
 import com.example.shop.view.LineTextView;
 import com.example.worktools.adapter.BaseListRecyclerAdapter;
 import com.example.worktools.adapter.holder.RecyclerHolder;
@@ -31,7 +32,6 @@ public class ProductVerticalAdapter extends BaseListRecyclerAdapter<Product.Data
     @Override
     public ViewHolder createViewHolder(View itemView, int viewType) {
         ViewHolder holder=new ViewHolder(itemView);
-
         return holder;
     }
 
@@ -39,10 +39,16 @@ public class ProductVerticalAdapter extends BaseListRecyclerAdapter<Product.Data
     @Override
     public void convert(ViewHolder holder, Product.Data product, int position) {
         GlideUtil.getInstance().loadImg(product.getImg_url(),holder.imvProductImage);
-        holder.tvTitle.setText(product.getShop_title());
-        holder.tvCouponInfo.setText(product.getCoupon_info());
+        holder.tvTitle.setText(product.getShort_title());
+        if(StringUtil.isNoEmpty(product.getCoupon_info())){
+            holder.tvCouponInfo.setVisibility(View.VISIBLE);
+            holder.tvCouponInfo.setText(product.getCoupon_info());
+        }else{
+            holder.tvCouponInfo.setVisibility(View.INVISIBLE);
+        }
         holder.tvPrice.setText(String.format(getContext().getString(R.string.priceFormat),product.getPrice()));
         holder.tvNewPrice.setText(String.format(getContext().getString(R.string.priceFormat),product.getPrice()-product.getCoupon_amount()));
+        holder.tvVolume.setText(String.format("已售：%s",product.getSell_count()));
     }
 
 
@@ -58,7 +64,8 @@ public class ProductVerticalAdapter extends BaseListRecyclerAdapter<Product.Data
         LineTextView tvPrice;
         @BindView(R.id.tv_new_price)
         TextView tvNewPrice;
-
+        @BindView(R.id.tv_volume)
+        TextView tvVolume;
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

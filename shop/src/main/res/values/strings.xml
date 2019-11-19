@@ -8,9 +8,11 @@
     <string name="share">分享</string>
     <string name="get_coupon">领取优惠券</string>
     <string name="priceFormat">%.1f</string>
-    <string name="same_recommend">同品推荐</string>
+    <string name="same_recommend">猜您喜欢</string>
     <string name="clothes">衣服</string>
     <string name="accessories">配饰</string>
     <string name="cosmetics">美妆</string>
     <string name="bag">箱包</string>
+    <string name="coupon_recommend">好货推荐</string>
+    <string name="hot_search">热门搜索</string>
 </resources>

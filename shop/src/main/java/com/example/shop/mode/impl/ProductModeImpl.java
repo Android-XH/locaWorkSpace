@@ -62,4 +62,28 @@ public class ProductModeImpl extends BaseAppMode implements IProductMode {
             }
         });
     }
+
+    @Override
+    public void getRecommend(CallBack<ProductList> callBack) {
+        get(Method.GET_RECOMMEND,new CallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                ProductList productList= GsonUtil.parseData(o,ProductList.class);
+                if(productList!=null){
+                    if(productList.isSuccess()){
+                        callBack.onSuccess(productList);
+                    }else{
+                        callBack.onFail(productList.getMsg());
+                    }
+                }else{
+                    callBack.onFail(NULL_BEAN);
+                }
+
+            }
+            @Override
+            public void onFail(String msg) {
+                callBack.onFail(msg);
+            }
+        });
+    }
 }
