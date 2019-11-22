@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
+
 android {
     compileSdkVersion 28
 
@@ -10,12 +11,12 @@ android {
 
     defaultConfig {
         applicationId "com.example.shop"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-
+        versionCode 2
+        versionName "1.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -24,11 +25,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':worktools')
     implementation "com.jakewharton:butterknife:10.0.0"
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -36,8 +37,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':worktools')
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-21'
     //注意版本与项目一致
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.pgyersdk:sdk:3.0.10'
 }

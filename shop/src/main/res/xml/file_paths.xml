@@ -7,6 +7,5 @@
         <files-path
             name="external_storage_root"
             path="." />
-        <files-path name="files_root" path="Android/data/com/pgyersdk"/>
     </paths>
 </resources>

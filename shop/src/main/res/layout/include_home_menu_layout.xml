@@ -4,7 +4,7 @@
     android:background="@color/white"
     android:padding="@dimen/layout_padding"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="wrap_content">
     <TextView
         style="@style/HomeMenu"
         android:drawableTop="@drawable/icon_yf"

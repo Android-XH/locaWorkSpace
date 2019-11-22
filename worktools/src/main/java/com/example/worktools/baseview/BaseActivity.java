@@ -220,7 +220,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
     /**
      * 权限请求结果回调接口
      */
-    interface RequestPermissionCallBack {
+    public interface RequestPermissionCallBack {
         /**
          * 同意授权
          */

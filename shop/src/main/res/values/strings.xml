@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shop</string>
+    <string name="app_name">真惠省</string>
     <string name="home">首页</string>
     <string name="rmb">￥</string>
     <string name="title">this is title...</string>
@@ -9,10 +9,10 @@
     <string name="get_coupon">领取优惠券</string>
     <string name="priceFormat">%.1f</string>
     <string name="same_recommend">猜您喜欢</string>
-    <string name="clothes">衣服</string>
-    <string name="accessories">配饰</string>
-    <string name="cosmetics">美妆</string>
-    <string name="bag">箱包</string>
+    <string name="clothes">精品服装</string>
+    <string name="accessories">服饰配件</string>
+    <string name="cosmetics">个护美妆</string>
+    <string name="bag">鞋子箱包</string>
     <string name="coupon_recommend">好货推荐</string>
     <string name="hot_search">热门搜索</string>
 </resources>

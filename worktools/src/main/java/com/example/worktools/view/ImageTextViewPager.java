@@ -49,7 +49,6 @@ public class ImageTextViewPager extends RelativeLayout implements ViewPager.OnPa
             if(isDestroy||isPause){
                 return;
             }
-            LogUtil.e("循环》》》》"+msg.what+"====="+getSize());
             if (msg.what == WHEEL && getSize() != 0) {
                 if (!isScrolling) {
                     int max = getSize() + 1;
@@ -229,7 +228,6 @@ public class ImageTextViewPager extends RelativeLayout implements ViewPager.OnPa
         } else if (state == 0) { // viewPager滚动结束
             releaseTime = System.currentTimeMillis();
             viewPager.setCurrentItem(currentPosition, false);
-
         }
         isScrolling = false;
     }

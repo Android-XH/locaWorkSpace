@@ -7,8 +7,10 @@ import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 
+import com.example.shop.util.PgyUtil;
 import com.example.worktools.baseview.BaseActivity;
 import com.example.worktools.presenter.BasePresenter;
+import com.pgyersdk.crash.PgyCrashManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +39,7 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
 
     @Override
     protected void initData(Bundle bundle) {
+        PgyUtil.register();
         initAppData(bundle);
         initView();
     }
@@ -67,5 +70,11 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
                 finish();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PgyUtil.unregister();
     }
 }

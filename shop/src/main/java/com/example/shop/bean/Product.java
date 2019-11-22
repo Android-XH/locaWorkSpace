@@ -3,6 +3,7 @@ package com.example.shop.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -199,7 +200,7 @@ public class Product extends BaseBean{
         }
 
         public List<String> getSmall_images() {
-            return small_images;
+            return small_images==null? Collections.emptyList():small_images;
         }
 
         public void setSmall_images(List<String> small_images) {

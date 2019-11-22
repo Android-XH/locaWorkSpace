@@ -3,7 +3,9 @@ package com.example.shop;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.shop.util.PgyUtil;
 import com.example.worktools.util.GlideUtil;
+import com.pgyersdk.crash.PgyCrashManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -37,5 +39,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         GlideUtil.getInstance().init(getApplicationContext());
+        PgyUtil.register();
     }
 }
