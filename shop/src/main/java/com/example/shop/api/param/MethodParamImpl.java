@@ -3,6 +3,8 @@ package com.example.shop.api.param;
 import com.example.shop.bean.array.Pagination;
 import com.example.shop.util.StringUtil;
 
+import java.util.Collections;
+
 import static com.example.shop.api.param.ParamKey.*;
 
 public class MethodParamImpl implements IMethodParam {
@@ -24,9 +26,24 @@ public class MethodParamImpl implements IMethodParam {
         if(StringUtil.isNoEmpty(baseParam.getSort())){
             paramCommon.put(SORT,baseParam.getSort());
         }
-       if(StringUtil.isNoEmpty(baseParam.getKeyWord())){
-           paramCommon.put(KEY_WORD,baseParam.getKeyWord());
-       }
+        if(StringUtil.isNoEmpty(baseParam.getKeyWord())){
+            paramCommon.put(KEY_WORD,baseParam.getKeyWord());
+        }
+       if(StringUtil.isNoEmpty(baseParam.getMinPrice())){
+            paramCommon.put(MIN_PRICE,baseParam.getMinPrice());
+        }
+        if(StringUtil.isNoEmpty(baseParam.getMaxPrice())){
+            paramCommon.put(MAX_PRICE,baseParam.getMaxPrice());
+        }
+        String []types=baseParam.getTypes();
+        if(types!=null&&types.length>0){
+            StringBuffer stringBuffer=new StringBuffer(types[0]);
+            for(int i=1;i<types.length;i++){
+                stringBuffer.append(",");
+                stringBuffer.append(types[i]);
+            }
+            paramCommon.put(TYPES,stringBuffer.toString());
+        }
         return paramCommon;
     }
 

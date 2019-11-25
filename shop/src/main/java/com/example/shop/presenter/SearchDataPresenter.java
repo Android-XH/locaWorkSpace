@@ -11,8 +11,13 @@ import com.example.worktools.adapter.LoadStatus;
 import com.example.worktools.model.CallBack;
 import com.example.worktools.presenter.BasePresenter;
 
+import java.util.List;
+
 public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchDataView> {
     private String keyWord;
+    private String minPrice;
+    private String maxPrice;
+    private String[] type;
     private int page;
     public SearchDataPresenter(String keyWord) {
         this.keyWord = keyWord;
@@ -32,6 +37,18 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
         this.keyWord = keyWord;
     }
 
+    public void setMinPrice(String minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public void setMaxPrice(String maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setType(String[] type) {
+        this.type = type;
+    }
+
     public void loadRefresh(){
         page=1;
         getProductList(LoadStatus.LOAD_REFRESH);
@@ -43,6 +60,9 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
     private void getProductList(LoadStatus status){
         BaseParam baseParam=new BaseParam();
         baseParam.setKeyWord(keyWord);
+        baseParam.setMinPrice(minPrice);
+        baseParam.setMaxPrice(maxPrice);
+        baseParam.setTypes(type);
         baseParam.setPagination(new Pagination(page,20));
         getMode().getProductList(baseParam, new CallBack<ProductList>() {
             @Override

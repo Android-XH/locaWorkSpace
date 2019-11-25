@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:background="@color/white"
+        android:paddingRight="@dimen/layout_padding">
+
+        <TextView
+            style="@style/PopProductTitle"
+            android:text="@string/price_select" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp"
+            android:id="@+id/radio_price"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                style="@style/PopProductPrice.RadioButton"
+                android:id="@+id/radio_zero"
+                android:layout_marginLeft="0dp"
+                android:text="0-40" />
+
+            <RadioButton
+                style="@style/PopProductPrice.RadioButton"
+                android:id="@+id/radio_forty"
+                android:text="40-60" />
+
+            <RadioButton
+                style="@style/PopProductPrice.RadioButton"
+                android:id="@+id/radio_sixty"
+                android:text="60-100" />
+
+            <RadioButton
+                style="@style/PopProductPrice.RadioButton"
+                android:layout_marginRight="0dp"
+                android:id="@+id/radio_one_hundred"
+                android:text="100以上" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_min"
+                style="@style/PopProductPrice.EditText" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/black_33"
+                android:textSize="@dimen/sp15" />
+
+            <EditText
+                android:id="@+id/et_max"
+                style="@style/PopProductPrice.EditText" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/PopProductTitle"
+            android:layout_marginTop="@dimen/layout_padding"
+            android:text="平台偏好" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CheckBox
+                style="@style/PopProductPrice.RadioButton"
+                android:layout_marginLeft="0dp"
+                android:checked="true"
+                android:id="@+id/cb_tmall"
+                android:text="天猫" />
+
+            <CheckBox
+                style="@style/PopProductPrice.RadioButton"
+                android:checked="true"
+                android:id="@+id/cb_tb"
+                android:text="淘宝" />
+
+            <CheckBox
+                style="@style/PopProductPrice.RadioButton"
+                android:visibility="invisible"
+                android:id="@+id/cb_jd"
+                android:text="京东" />
+
+            <CheckBox
+                style="@style/PopProductPrice.RadioButton"
+                android:visibility="invisible"
+                android:layout_marginRight="0dp"
+                android:text="拼多多" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="1dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_white"
+            android:gravity="center"
+            android:text="重置"
+            android:textColor="@color/black_66"
+            android:textSize="@dimen/sp15"
+            android:id="@+id/tv_reload"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_red"
+            android:gravity="center"
+            android:text="完成"
+            android:id="@+id/tv_down"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+</LinearLayout>

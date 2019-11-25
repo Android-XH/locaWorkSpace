@@ -11,7 +11,7 @@
         android:padding="@dimen/layout_padding">
 
         <ImageView
-            android:id="@+id/imv_src"
+            android:id="@+id/imv_product_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_centerVertical="true"
@@ -24,8 +24,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="@dimen/layout_padding"
-            android:layout_toEndOf="@+id/imv_src"
-            android:layout_toRightOf="@+id/imv_src"
+            android:layout_toEndOf="@+id/imv_product_image"
+            android:layout_toRightOf="@+id/imv_product_image"
             android:orientation="vertical">
 
             <TextView
@@ -86,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:id="@+id/tv_get_coupon"
                     android:background="@drawable/shape_layout_red_50dp"
                     android:text="立即领券"
                     android:textColor="@color/colorPrimary"

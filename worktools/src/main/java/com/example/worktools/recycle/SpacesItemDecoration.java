@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.example.worktools.util.LogUtil;
+
 public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 
     private SpacesItemDecorationEntrust mEntrust;
@@ -45,6 +47,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 
     private SpacesItemDecorationEntrust getEntrust(RecyclerView.LayoutManager manager) {
         SpacesItemDecorationEntrust entrust = null;
+        LogUtil.e(manager+"");
         //要注意这边的GridLayoutManager是继承LinearLayoutManager，所以要先判断GridLayoutManager
         if (manager instanceof GridLayoutManager) {
             entrust = new GridEntrust(leftRight, topBottom, mColor);

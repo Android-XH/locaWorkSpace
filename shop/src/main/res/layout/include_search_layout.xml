@@ -20,12 +20,14 @@
         android:gravity="center_vertical"
         android:imeOptions="actionSearch"
         android:singleLine="true"
+        android:textSize="@dimen/sp16"
         android:background="@drawable/shape_layout_gray_white_50dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/layout_padding"
         android:text="@string/search"
+        android:textSize="@dimen/sp15"
         android:id="@+id/tv_search"
         />
 </LinearLayout>

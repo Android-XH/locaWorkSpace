@@ -12,12 +12,38 @@ public class BaseParam {
     private int category_item_id;//子分类ID
     private int recommend;//推荐等级
     private String sort;
-
+    private String[] types;//平台类型0 淘宝 1：天猫 2：京东 3：拼多多
+    private String minPrice;//最小价格
+    private String maxPrice;//最大价格
     public Pagination getPagination() {
         if(pagination==null){
             pagination=new Pagination(1,20);
         }
         return pagination;
+    }
+
+    public String[] getTypes() {
+        return types;
+    }
+
+    public void setTypes(String[] types) {
+        this.types = types;
+    }
+
+    public String getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(String minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public String getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(String maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public void setPagination(Pagination pagination) {

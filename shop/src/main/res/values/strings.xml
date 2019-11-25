@@ -15,4 +15,5 @@
     <string name="bag">鞋子箱包</string>
     <string name="coupon_recommend">好货推荐</string>
     <string name="hot_search">热门搜索</string>
+    <string name="price_select">价格区间（元）</string>
 </resources>

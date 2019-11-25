@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop.R;
@@ -20,13 +21,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProductVerticalAdapter extends BaseListRecyclerAdapter<Product.Data, ProductVerticalAdapter.ViewHolder> {
+    private int viewType;
     public ProductVerticalAdapter(Context context) {
         super(context);
     }
 
     @Override
     public int getViewLayoutId(int viewType) {
-        return R.layout.item_product_vertical_layout;
+        if(viewType==0){
+            return R.layout.item_product_vertical_layout;
+        }else{
+            return R.layout.item_product_layout;
+        }
+
     }
 
     @Override
@@ -35,6 +42,14 @@ public class ProductVerticalAdapter extends BaseListRecyclerAdapter<Product.Data
         return holder;
     }
 
+    public void setViewType(int viewType){
+        this.viewType=viewType;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return viewType;
+    }
 
     @Override
     public void convert(ViewHolder holder, Product.Data product, int position) {
@@ -48,22 +63,30 @@ public class ProductVerticalAdapter extends BaseListRecyclerAdapter<Product.Data
         }
         holder.tvPrice.setText(String.format(getContext().getString(R.string.priceFormat),product.getPrice()));
         holder.tvNewPrice.setText(String.format(getContext().getString(R.string.priceFormat),product.getPrice()-product.getCoupon_amount()));
-        holder.tvVolume.setText(String.format("已售：%s",product.getSell_count()));
+        if(getItemViewType(position)==1){
+            holder.tvProductDesc.setText(product.getDescription());
+        }else{
+            holder.tvVolume.setText(String.format("已售：%s",product.getSell_count()));
+        }
+
     }
 
 
-    static
-    class ViewHolder extends RecyclerHolder {
+    static class ViewHolder extends RecyclerHolder {
         @BindView(R.id.imv_product_image)
         ImageView imvProductImage;
         @BindView(R.id.tv_title)
         TextView tvTitle;
+        @Nullable
+        @BindView(R.id.tv_product_desc)
+        TextView tvProductDesc;
         @BindView(R.id.tv_coupon_info)
         TextView tvCouponInfo;
         @BindView(R.id.tv_price)
         LineTextView tvPrice;
         @BindView(R.id.tv_new_price)
         TextView tvNewPrice;
+        @Nullable
         @BindView(R.id.tv_volume)
         TextView tvVolume;
         ViewHolder(View view) {

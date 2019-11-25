@@ -105,6 +105,7 @@ public abstract class BaseListRecyclerAdapter<T, VH extends RecyclerHolder> exte
         return dataList == null ? 0 : dataList.size();
     }
 
+
     public T getItem(int position) {
         return dataList.get(position);
     }
