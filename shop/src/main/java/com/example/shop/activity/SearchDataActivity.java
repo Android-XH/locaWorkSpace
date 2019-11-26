@@ -5,11 +5,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,8 +24,6 @@ import com.example.shop.util.StartUtil;
 import com.example.shop.util.StringUtil;
 import com.example.shop.viewImpl.ISearchDataView;
 import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
-import com.example.worktools.recycle.SpacesItemDecoration;
-import com.example.worktools.util.LogUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -35,9 +32,8 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.example.worktools.util.DpUtil.dip2px;
 
 public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> implements ISearchDataView, OnRecycleItemClickListener<Product.Data>, OnLoadMoreListener, OnRefreshListener, ProductPopupWindow.onDownClick {
     @BindView(R.id.et_search)
@@ -46,15 +42,15 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     RecyclerView recycleView;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.btn_vertical)
-    ImageButton imbVertical;
+    @BindView(R.id.sort_radio_group)
+    RadioGroup sortRadioGroup;
     private String keyWord;
     private ProductVerticalAdapter adapter;
     int lineWidth = 5;
     int spanCount = 2;
     private GridLayoutManager gridLayoutManager;
     private LinearLayoutManager linearLayoutManager;
-
+    private ProductPopupWindow popupWindow;
 
     @Override
     protected int setContentView() {
@@ -71,8 +67,8 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     @Override
     protected void initView() {
         showBackImb();
-        linearLayoutManager=new LinearLayoutManager(this);
-        gridLayoutManager=new GridLayoutManager(this, spanCount, GridLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(this);
+        gridLayoutManager = new GridLayoutManager(this, spanCount, GridLayoutManager.VERTICAL, false);
         recycleView.setLayoutManager(gridLayoutManager);
 //        recycleView.addItemDecoration(new SpacesItemDecoration(dip2px(lineWidth), dip2px(lineWidth), getResources().getColor(R.color.line)));
         adapter.setViewType(0);
@@ -110,31 +106,6 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
         adapter.addDataList(dataList);
     }
 
-    @OnClick({R.id.tv_search, R.id.btn_vertical})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_vertical:
-//                if(view.isSelected()){
-//                    int position=linearLayoutManager.findFirstVisibleItemPosition();
-//                    recycleView.setLayoutManager(gridLayoutManager);
-//                    adapter.setViewType(0);
-//                    recycleView.scrollToPosition(position);
-//                }else{
-//                    int position=gridLayoutManager.findFirstVisibleItemPosition();
-//                    recycleView.setLayoutManager(linearLayoutManager);
-//                    adapter.setViewType(1);
-//                    recycleView.scrollToPosition(position);
-//                }
-//                view.setSelected(!view.isSelected());
-                ProductPopupWindow.newInstance(this).setOnDownClick(this).showAsDropDown(imbVertical);
-                break;
-            case R.id.tv_search:
-                searchOfKey();
-                break;
-        }
-
-    }
-
     private void searchOfKey() {
         keyWord = etSearch.getText().toString();
         if (StringUtil.isNoEmpty(keyWord)) {
@@ -168,6 +139,36 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
         getPresenter().setMinPrice(param.getMinPrice());
         getPresenter().setMaxPrice(param.getMaxPrice());
         getPresenter().setType(param.getTypes());
+        showLoading(getString(R.string.loading_data));
         getPresenter().loadRefresh();
+    }
+
+    @OnClick({R.id.imb_vertical, R.id.btn_select, R.id.tv_search})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.imb_vertical:
+                if (view.isSelected()) {
+                    int position = linearLayoutManager.findFirstVisibleItemPosition();
+                    recycleView.setLayoutManager(gridLayoutManager);
+                    adapter.setViewType(0);
+                    recycleView.scrollToPosition(position);
+                } else {
+                    int position = gridLayoutManager.findFirstVisibleItemPosition();
+                    recycleView.setLayoutManager(linearLayoutManager);
+                    adapter.setViewType(1);
+                    recycleView.scrollToPosition(position);
+                }
+                view.setSelected(!view.isSelected());
+                break;
+            case R.id.btn_select:
+                if (popupWindow == null) {
+                    popupWindow = ProductPopupWindow.newInstance(this).setOnDownClick(this);
+                }
+                popupWindow.showAsDropDown(sortRadioGroup);
+                break;
+            case R.id.tv_search:
+                searchOfKey();
+                break;
+        }
     }
 }

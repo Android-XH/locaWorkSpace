@@ -57,6 +57,8 @@ public class ProductPopupWindow extends PopupWindow implements View.OnClickListe
                 holder.radioPrice.clearCheck();
                 holder.cbTb.setChecked(true);
                 holder.cbTmall.setChecked(true);
+                holder.etMin.setText("");
+                holder.etMax.setText("");
                 break;
             case R.id.tv_down:
                 Param param=new Param();
@@ -80,6 +82,7 @@ public class ProductPopupWindow extends PopupWindow implements View.OnClickListe
                 if(getOnDownClick()!=null){
                     getOnDownClick().onClick(param);
                 }
+                this.dismiss();
                 break;
         }
     }
@@ -101,6 +104,7 @@ public class ProductPopupWindow extends PopupWindow implements View.OnClickListe
                 break;
             case R.id.radio_one_hundred:
                 holder.etMin.setText("100");
+                holder.etMax.setText("");
                 break;
         }
     }
