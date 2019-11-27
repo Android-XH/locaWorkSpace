@@ -31,7 +31,8 @@ import butterknife.Unbinder;
 
 
 /**
- *  Activity 父类
+ * Activity 父类
+ *
  * @param <T>
  */
 public abstract class BaseActivity<T extends BasePresenter> extends FragmentActivity implements BaseView {
@@ -41,8 +42,32 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
     private final int mRequestCode = 1024;
     private RequestPermissionCallBack mRequestPermissionCallBack;
 
+    public enum TransitionMode {LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (getOverridePendingTransitionMode() != null) {
+            switch (getOverridePendingTransitionMode()) {
+                case LEFT:
+                    overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
+                    break;
+                case RIGHT:
+                    overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                    break;
+                case TOP:
+                    overridePendingTransition(R.anim.slide_in_from_top, R.anim.slide_out_to_top);
+                    break;
+                case BOTTOM:
+                    overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_bottom);
+                    break;
+                case SCALE:
+                    overridePendingTransition(R.anim.scale_in, R.anim.scale_out);
+                    break;
+                case FADE:
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    break;
+            }
+        }
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         mUnBinder = ButterKnife.bind(this);
@@ -51,22 +76,50 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
     }
 
     protected abstract int getLayout();
+
     protected abstract T initPresent();
+
     protected abstract void initData(Bundle bundle);
+
+    protected abstract TransitionMode getOverridePendingTransitionMode();
 
     protected T getBasePresenter() {
         return presenter;
     }
 
-    public void loadData(){
+    public void loadData() {
         presenter = initPresent();
         if (presenter != null) {
             presenter.onStart(this);
             presenter.getData();
         }
     }
-
-
+    @Override
+    public void finish() {
+        super.finish();
+        if (getOverridePendingTransitionMode()!=null) {
+            switch (getOverridePendingTransitionMode()) {
+                case LEFT:
+                    overridePendingTransition(R.anim.slide_right_in,R.anim.slide_right_out);
+                    break;
+                case RIGHT:
+                    overridePendingTransition(R.anim.slide_left_in,R.anim.slide_left_out);
+                    break;
+                case TOP:
+                    overridePendingTransition(R.anim.slide_in_from_bottom,R.anim.slide_out_to_bottom);
+                    break;
+                case BOTTOM:
+                    overridePendingTransition(R.anim.slide_in_from_top,R.anim.slide_out_to_top);
+                    break;
+                case SCALE:
+                    overridePendingTransition(R.anim.scale_in_disappear,R.anim.scale_out_disappear);
+                    break;
+                case FADE:
+                    overridePendingTransition(R.anim.fade_in_disappear,R.anim.fade_out_disappear);
+                    break;
+            }
+        }
+    }
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -87,6 +140,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
             progressDialog = null;
         }
     }
+
     /**
      * 权限请求结果回调
      *
@@ -113,7 +167,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
                             new AlertDialog.Builder(BaseActivity.this).setTitle("PermissionTest")//设置对话框标题
                                     .setMessage(
                                             "获取相关权限失败:" + permissionName +
-                                            "将导致部分功能无法正常使用，需要到设置页面手动授权")//设置显示的内容
+                                                    "将导致部分功能无法正常使用，需要到设置页面手动授权")//设置显示的内容
                                     .setPositiveButton("去授权", new DialogInterface.OnClickListener() {//添加确定按钮
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
@@ -157,7 +211,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
      * @param permissions
      * @param callback
      */
-    public void requestPermissions(final Context context, final String[] permissions,RequestPermissionCallBack callback) {
+    public void requestPermissions(final Context context, final String[] permissions, RequestPermissionCallBack callback) {
         this.mRequestPermissionCallBack = callback;
         StringBuilder permissionNames = new StringBuilder();
         for (String s : permissions) {
@@ -198,23 +252,23 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
 
     @Override
     public void missLoading() {
-        if(progressDialog!=null&&progressDialog.isShowing())
-        progressDialog.dismiss();
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
     @Override
     public void showLoading(String msg) {
-        if(progressDialog==null){
+        if (progressDialog == null) {
             progressDialog = CustomProgressDialog.createDialog(this);
         }
-        if(!progressDialog.isShowing()){
+        if (!progressDialog.isShowing()) {
             progressDialog.setMessage(msg).show();
         }
     }
 
     @Override
     public void showToastMsg(String msg) {
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     /**

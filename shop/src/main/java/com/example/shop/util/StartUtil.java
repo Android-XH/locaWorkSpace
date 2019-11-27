@@ -3,6 +3,7 @@ package com.example.shop.util;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.example.shop.activity.CategoryDataActivity;
 import com.example.shop.activity.ProductDetailActivity;
 import com.example.shop.activity.SearchActivity;
 import com.example.shop.activity.SearchDataActivity;
@@ -30,5 +31,10 @@ public class StartUtil extends BaseStart{
         Bundle bundle=new Bundle();
         bundle.putString(IntentKey.KEY_WORD,keyWord);
         startActivity(activity,bundle, SearchDataActivity.class);
+    }
+    public void startCategoryData(Activity activity,String mTitle){
+        Bundle bundle=new Bundle();
+        bundle.putString(IntentKey.TITLE,mTitle);
+        startActivity(activity,bundle, CategoryDataActivity.class);
     }
 }

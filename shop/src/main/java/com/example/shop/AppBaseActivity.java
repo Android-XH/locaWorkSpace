@@ -25,7 +25,10 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
     protected abstract void initAppData(Bundle bundle);
     protected abstract void initView();
     protected abstract P initPresenter();
-
+    @Override
+    protected TransitionMode getOverridePendingTransitionMode() {
+        return TransitionMode.LEFT;
+    }
 
     @Override
     protected int getLayout() {

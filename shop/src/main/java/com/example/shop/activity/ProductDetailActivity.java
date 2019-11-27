@@ -204,5 +204,4 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
                 break;
         }
     }
-
 }

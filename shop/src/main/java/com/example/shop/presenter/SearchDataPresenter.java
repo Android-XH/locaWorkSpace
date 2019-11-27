@@ -17,6 +17,7 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
     private String keyWord;
     private String minPrice;
     private String maxPrice;
+    private String loadSort;
     private String[] type;
     private int page;
     public SearchDataPresenter(String keyWord) {
@@ -49,6 +50,10 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
         this.type = type;
     }
 
+    public void setLoadSort(String loadSort) {
+        this.loadSort = loadSort;
+    }
+
     public void loadRefresh(){
         page=1;
         getProductList(LoadStatus.LOAD_REFRESH);
@@ -62,6 +67,7 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
         baseParam.setKeyWord(keyWord);
         baseParam.setMinPrice(minPrice);
         baseParam.setMaxPrice(maxPrice);
+        baseParam.setSort(loadSort);
         baseParam.setTypes(type);
         baseParam.setPagination(new Pagination(page,20));
         getMode().getProductList(baseParam, new CallBack<ProductList>() {

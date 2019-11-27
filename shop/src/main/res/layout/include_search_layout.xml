@@ -31,11 +31,4 @@
         android:textSize="@dimen/sp15"
         android:id="@+id/tv_search"
         />
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:id="@+id/imb_vertical"
-        android:src="@android:drawable/ic_menu_today"
-        />
 </LinearLayout>

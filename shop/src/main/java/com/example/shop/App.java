@@ -6,6 +6,14 @@ import android.content.Context;
 import com.example.shop.util.PgyUtil;
 import com.example.worktools.util.GlideUtil;
 import com.pgyersdk.crash.PgyCrashManager;
+import com.scwang.smartrefresh.header.DeliveryHeader;
+import com.scwang.smartrefresh.header.DropBoxHeader;
+import com.scwang.smartrefresh.header.FlyRefreshHeader;
+import com.scwang.smartrefresh.header.MaterialHeader;
+import com.scwang.smartrefresh.header.PhoenixHeader;
+import com.scwang.smartrefresh.header.StoreHouseHeader;
+import com.scwang.smartrefresh.header.TaurusHeader;
+import com.scwang.smartrefresh.header.WaterDropHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -23,7 +31,7 @@ public class App extends Application {
             @Override
             public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
                 layout.setPrimaryColorsId(R.color.colorPrimary, R.color.white);//全局设置主题颜色
-                return new BezierRadarHeader(context);
+                return new DeliveryHeader(context);
             }
         });
         //设置全局的Footer构建器
