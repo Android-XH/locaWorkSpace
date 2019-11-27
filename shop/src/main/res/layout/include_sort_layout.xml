@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="40dp"
+    android:paddingLeft="@dimen/layout_padding"
+    android:paddingRight="@dimen/layout_padding"
     android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal">
@@ -19,15 +21,19 @@
             >
             <RadioButton
                 android:text="综合"
+                android:layout_width="wrap_content"
                 android:checked="true"
                 android:id="@+id/sort_radio_all"
                 style="@style/Sort.RadioButton"/>
             <RadioButton
                 android:text="销量"
+                android:layout_width="wrap_content"
                 android:id="@+id/sort_radio_volume"
                 style="@style/Sort.RadioButton"/>
             <RadioButton
+                android:layout_width="wrap_content"
                 android:text="价格"
+                android:drawableLeft="@drawable/up_down"
                 android:id="@+id/sort_radio_price"
                 style="@style/Sort.RadioButton"/>
         </RadioGroup>
@@ -37,10 +43,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:drawableLeft="@android:drawable/ic_menu_today"
+        android:drawableLeft="@drawable/pop_select"
         android:text="筛选"
+        android:textSize="@dimen/sp14"
+        android:textColor="@drawable/pop_select_text"
         android:gravity="center"
-        android:drawablePadding="5dp"
         android:layout_marginLeft="@dimen/layout_padding"
         />
 </LinearLayout>

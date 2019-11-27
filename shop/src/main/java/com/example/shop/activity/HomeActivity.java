@@ -41,6 +41,8 @@ import butterknife.OnClick;
 
 import static com.example.shop.common.ConfigCommon.INSTALL_PACKAGES_REQUEST_CODE;
 import static com.example.shop.common.ConfigCommon.WRITE_EXTERNAL_STORAGE;
+import static com.example.worktools.baseview.BaseActivity.TransitionMode.FADE;
+import static com.example.worktools.baseview.BaseActivity.TransitionMode.SCALE;
 import static com.example.worktools.util.DpUtil.dip2px;
 
 
@@ -77,7 +79,6 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
         } else {
             if (Build.VERSION.SDK_INT >= 26) {
                 boolean b = getPackageManager().canRequestPackageInstalls();
-                LogUtil.e(b+"");
                 if (b) {
                     PgyUtil.Update();
                 } else {
@@ -90,7 +91,6 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
         this.mContext=this;
         couponRecommendAdapter = new ProductVerticalAdapter(this);
         adapter = new ProductBannerAdapter(this);
-
     }
 
     @Override
@@ -138,24 +138,24 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         getPresenter().loadMore();
     }
-    //R.id.tv_clothes, R.id.tv_accessories, R.id.tv_cosmetics, R.id.tv_bag
-    @OnClick({R.id.tv_search})
+    //
+    @OnClick({R.id.tv_search,R.id.tv_clothes, R.id.tv_accessories, R.id.tv_cosmetics, R.id.tv_bag})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_search:
                 StartUtil.getInstance().startSearch(this);
                 break;
             case R.id.tv_clothes:
-                showToastMsg("衣服");
+                StartUtil.getInstance().startCategoryData(this,getString(R.string.clothes));
                 break;
             case R.id.tv_accessories:
-                showToastMsg("配饰");
+                StartUtil.getInstance().startCategoryData(this,getString(R.string.accessories));
                 break;
             case R.id.tv_cosmetics:
-                showToastMsg("美妆");
+                StartUtil.getInstance().startCategoryData(this,getString(R.string.cosmetics));
                 break;
             case R.id.tv_bag:
-                showToastMsg("箱包");
+                StartUtil.getInstance().startCategoryData(this,getString(R.string.bag));
                 break;
         }
     }
@@ -171,8 +171,8 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
         vpBanner.setPause(false);
     }
 
@@ -182,6 +182,10 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
         vpBanner.setPause(true);
     }
 
+    @Override
+    protected TransitionMode getOverridePendingTransitionMode() {
+        return FADE;
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

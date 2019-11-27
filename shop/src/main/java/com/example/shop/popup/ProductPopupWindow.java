@@ -20,7 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductPopupWindow extends PopupWindow implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class ProductPopupWindow extends PopupWindow implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, PopupWindow.OnDismissListener {
     private ViewHolder holder;
     private onDownClick onDownClick;
 
@@ -47,6 +47,7 @@ public class ProductPopupWindow extends PopupWindow implements View.OnClickListe
         holder.tvReload.setOnClickListener(this);
         holder.tvDown.setOnClickListener(this);
         holder.radioPrice.setOnCheckedChangeListener(this);
+        setOnDismissListener(this);
         setAnimationStyle(R.anim.slide_in_from_top);
     }
 
@@ -109,7 +110,17 @@ public class ProductPopupWindow extends PopupWindow implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onDismiss() {
+        if(getOnDownClick()!=null){
+            getOnDownClick().onDismissListener();
+        }
+    }
+
+
+
     public interface onDownClick{
+        void onDismissListener();
         void onClick(Param param);
     }
     static

@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.example.shop.util.StartUtil;
 import com.example.shop.util.StringUtil;
 import com.example.shop.viewImpl.ISearchDataView;
 import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
+import com.example.worktools.util.LogUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -35,7 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> implements ISearchDataView, OnRecycleItemClickListener<Product.Data>, OnLoadMoreListener, OnRefreshListener, ProductPopupWindow.onDownClick {
+public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> implements ISearchDataView, OnRecycleItemClickListener<Product.Data>, OnLoadMoreListener, OnRefreshListener, ProductPopupWindow.onDownClick, RadioGroup.OnCheckedChangeListener {
     @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.recycleView)
@@ -44,6 +46,10 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.sort_radio_group)
     RadioGroup sortRadioGroup;
+    @BindView(R.id.sort_radio_price)
+    RadioButton sortRadioPrice;
+    @BindView(R.id.btn_select)
+    TextView btnSelect;
     private String keyWord;
     private ProductVerticalAdapter adapter;
     int lineWidth = 5;
@@ -85,6 +91,7 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
         });
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
+        sortRadioGroup.setOnCheckedChangeListener(this);
         etSearch.setText(keyWord);
         etSearch.setSelection(keyWord.length());
     }
@@ -92,18 +99,23 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     @Override
     protected SearchDataPresenter initPresenter() {
         showLoading(getString(R.string.loading_search));
-        return new SearchDataPresenter(keyWord);
+        SearchDataPresenter searchDataPresenter=new SearchDataPresenter();
+        searchDataPresenter.setKeyWord(keyWord);
+        searchDataPresenter.loadRefresh();
+        return searchDataPresenter;
     }
 
     @Override
     public void onLoadRefresh(List<Product.Data> dataList, int totalPage) {
         missLoading();
         adapter.setDataList(dataList);
+        refreshLayout.finishRefresh();
     }
 
     @Override
     public void onLoadMore(List<Product.Data> dataList, int totalPage) {
         adapter.addDataList(dataList);
+        refreshLayout.finishLoadMore();
     }
 
     private void searchOfKey() {
@@ -125,13 +137,16 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         getPresenter().loadMore();
-        refreshLayout.finishLoadMore();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         getPresenter().loadRefresh();
-        refreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void onDismissListener() {
+        btnSelect.setSelected(false);
     }
 
     @Override
@@ -143,7 +158,7 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
         getPresenter().loadRefresh();
     }
 
-    @OnClick({R.id.imb_vertical, R.id.btn_select, R.id.tv_search})
+    @OnClick({R.id.imb_vertical, R.id.btn_select, R.id.tv_search,R.id.sort_radio_price})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.imb_vertical:
@@ -164,10 +179,37 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
                 if (popupWindow == null) {
                     popupWindow = ProductPopupWindow.newInstance(this).setOnDownClick(this);
                 }
+                btnSelect.setSelected(true);
                 popupWindow.showAsDropDown(sortRadioGroup);
                 break;
             case R.id.tv_search:
                 searchOfKey();
+                break;
+            case R.id.sort_radio_price:
+                showLoading(getString(R.string.loading_data));
+                if (sortRadioPrice.isSelected()) {
+                    getPresenter().setLoadSort("priceInverse");
+                } else {
+                    getPresenter().setLoadSort("price");
+                }
+                getPresenter().loadRefresh();
+                sortRadioPrice.setSelected(!sortRadioPrice.isSelected());
+                break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId){
+            case R.id.sort_radio_all:
+                showLoading(getString(R.string.loading_data));
+                getPresenter().setLoadSort("");
+                getPresenter().loadRefresh();
+                break;
+            case R.id.sort_radio_volume:
+                showLoading(getString(R.string.loading_data));
+                getPresenter().setLoadSort("volume");
+                getPresenter().loadRefresh();
                 break;
         }
     }

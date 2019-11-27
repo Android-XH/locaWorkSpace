@@ -28,19 +28,20 @@
             android:src="@drawable/list_item_change" />
     </LinearLayout>
 
-    <include layout="@layout/include_line_layout" />
-
-    <include layout="@layout/include_sort_layout" />
-
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_category"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srlEnableAutoLoadMore="true">
+        android:layout_height="?attr/actionBarSize"
+        app:tabMode="scrollable"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorHeight="3dp"
+        app:tabTextColor="@android:color/black"
+        app:tabSelectedTextColor="@color/colorPrimary">
+    </com.google.android.material.tabs.TabLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.viewpager.widget.ViewPager>
 </LinearLayout>

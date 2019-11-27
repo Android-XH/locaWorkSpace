@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PointView">
+        <attr name="point_small_circle_color" format="color"/>
+        <attr name="point_big_circle_color" format="color"/>
+        <attr name="point_progress" format="integer"/>
+        <attr name="point_bitmap" format="reference|color"></attr>
+    </declare-styleable>
+</resources>
