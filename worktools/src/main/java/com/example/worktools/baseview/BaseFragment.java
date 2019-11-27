@@ -28,20 +28,6 @@ public abstract class BaseFragment<T extends BasePresenter,A extends Activity> e
     private Unbinder mUnbinder;
     private CustomProgressDialog progressDialog;
     private boolean UserVisible;
-    public boolean isUserVisible() {
-        return UserVisible;
-    }
-
-    public void setUserVisible(boolean userVisible) {
-        UserVisible = userVisible;
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        setUserVisible(isVisibleToUser);
-        onResume();
-    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,7 +64,7 @@ public abstract class BaseFragment<T extends BasePresenter,A extends Activity> e
     @Override
     public void onResume() {
         super.onResume();
-        if(isUserVisible()&&isAdded()){
+        if(!isHidden()&&isAdded()){
             if(presenter!=null){
                 presenter.onLoadData();
             }else{
