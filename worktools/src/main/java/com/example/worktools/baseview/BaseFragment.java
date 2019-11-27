@@ -22,9 +22,9 @@ import butterknife.Unbinder;
  * Created by xuhao on 2017/2/15.
  */
 
-public abstract class BaseFragment<T extends BasePresenter,A extends Activity> extends Fragment implements BaseView{
+public abstract class BaseFragment<P extends BasePresenter,A extends Activity> extends Fragment implements BaseView{
     private View view;
-    private T presenter;
+    private P presenter;
     private Unbinder mUnbinder;
     private CustomProgressDialog progressDialog;
     private boolean UserVisible;
@@ -42,20 +42,20 @@ public abstract class BaseFragment<T extends BasePresenter,A extends Activity> e
         return view;
     }
 
-    public void setPresenter(T presenter) {
+    public void setPresenter(P presenter) {
         this.presenter = presenter;
     }
 
     protected abstract int getLayout();
     protected abstract void initView();
     protected abstract void initData();
-    protected abstract T initPresent();
+    protected abstract P initPresent();
     protected void showToast(String content) {
         if(getActivity()!=null){
             getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), content, Toast.LENGTH_SHORT).show());
         }
     }
-    public T getPresenter(){
+    public P getPresenter(){
         if(presenter==null){
             presenter=initPresent();
         }

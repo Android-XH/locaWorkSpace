@@ -20,13 +20,10 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
     private String loadSort;
     private String[] type;
     private int page;
-    public SearchDataPresenter(String keyWord) {
-        this.keyWord = keyWord;
-    }
 
     @Override
     public void getData() {
-        loadRefresh();
+
     }
 
     @Override

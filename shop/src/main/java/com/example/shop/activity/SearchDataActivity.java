@@ -99,7 +99,10 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     @Override
     protected SearchDataPresenter initPresenter() {
         showLoading(getString(R.string.loading_search));
-        return new SearchDataPresenter(keyWord);
+        SearchDataPresenter searchDataPresenter=new SearchDataPresenter();
+        searchDataPresenter.setKeyWord(keyWord);
+        searchDataPresenter.loadRefresh();
+        return searchDataPresenter;
     }
 
     @Override

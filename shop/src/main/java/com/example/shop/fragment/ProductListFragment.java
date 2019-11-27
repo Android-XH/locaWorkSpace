@@ -10,12 +10,29 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.shop.R;
+import com.example.shop.activity.CategoryDataActivity;
+import com.example.shop.presenter.SearchDataPresenter;
+import com.example.worktools.baseview.BaseFragment;
 
-public class ProductListFragment extends Fragment {
+public class ProductListFragment extends BaseFragment<SearchDataPresenter, CategoryDataActivity> {
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_product_list_layout,null);
+    protected int getLayout() {
+        return R.layout.fragment_product_list_layout;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected SearchDataPresenter initPresent() {
+        return new SearchDataPresenter();
     }
 }

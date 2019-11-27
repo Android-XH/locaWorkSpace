@@ -82,7 +82,7 @@ public class CategoryDataActivity extends AppBaseActivity<SearchDataPresenter> i
     @Override
     protected SearchDataPresenter initPresenter() {
         showLoading(getString(R.string.loading_search));
-        return new SearchDataPresenter(keyWord);
+        return new SearchDataPresenter();
     }
 
     @Override
