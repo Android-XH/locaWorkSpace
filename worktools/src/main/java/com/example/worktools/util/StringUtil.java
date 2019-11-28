@@ -1,4 +1,4 @@
-package com.example.shop.util;
+package com.example.worktools.util;
 
 public class StringUtil {
     public static boolean isEmpty(String str){

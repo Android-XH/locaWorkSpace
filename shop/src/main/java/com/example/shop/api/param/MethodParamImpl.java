@@ -1,9 +1,7 @@
 package com.example.shop.api.param;
 
 import com.example.shop.bean.array.Pagination;
-import com.example.shop.util.StringUtil;
-
-import java.util.Collections;
+import com.example.worktools.util.StringUtil;
 
 import static com.example.shop.api.param.ParamKey.*;
 

@@ -33,8 +33,8 @@ public abstract class BaseFragment<P extends BasePresenter,A extends Activity> e
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(getLayout(),null);
         mUnbinder= ButterKnife.bind(this,view);
+        initData(getArguments());
         initView();
-        initData();
         presenter=initPresent();
         if(presenter!=null){
             presenter.onStart(this);
@@ -47,9 +47,9 @@ public abstract class BaseFragment<P extends BasePresenter,A extends Activity> e
     }
 
     protected abstract int getLayout();
-    protected abstract void initView();
-    protected abstract void initData();
     protected abstract P initPresent();
+    protected abstract void initData(Bundle bundle);
+    protected abstract void initView();
     protected void showToast(String content) {
         if(getActivity()!=null){
             getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), content, Toast.LENGTH_SHORT).show());

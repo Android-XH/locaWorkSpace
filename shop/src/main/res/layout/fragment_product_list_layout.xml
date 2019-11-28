@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/layout_padding"
+        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_marginRight="@dimen/layout_padding"
+        android:background="@drawable/shape_layout_gray_white_50dp"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/layout_padding"
+        android:text="请输入关键词..."
+        android:textColor="@color/black_99" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@color/grayDB"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/left_list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            app:srlEnableRefresh="false"
+            app:srlEnableAutoLoadMore="false">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/black_99"
+                android:id="@+id/tv_refresh_title"
+                android:gravity="center"
+                />
+            <ListView
+                android:id="@+id/right_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/tv_refresh_bottom"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/black_99"
+                android:gravity="center"
+                />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
 </LinearLayout>

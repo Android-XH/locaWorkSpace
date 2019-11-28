@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.example.shop.util.PgyUtil;
@@ -16,8 +17,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActivity<BasePresenter> implements View.OnClickListener {
+    @Nullable
     @BindView(R.id.imb_back)
     ImageButton imbBack;
+    @Nullable
     @BindView(R.id.tv_title)
     TextView tvTitle;
 

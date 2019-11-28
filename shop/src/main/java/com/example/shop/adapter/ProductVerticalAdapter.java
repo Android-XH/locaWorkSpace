@@ -5,13 +5,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shop.R;
 import com.example.shop.bean.Product;
-import com.example.shop.util.StringUtil;
+import com.example.worktools.util.StringUtil;
 import com.example.shop.view.LineTextView;
 import com.example.worktools.adapter.BaseListRecyclerAdapter;
 import com.example.worktools.adapter.holder.RecyclerHolder;

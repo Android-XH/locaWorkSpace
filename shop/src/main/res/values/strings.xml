@@ -16,4 +16,9 @@
     <string name="coupon_recommend">好货推荐</string>
     <string name="hot_search">热门搜索</string>
     <string name="price_select">价格区间（元）</string>
+
+    <string name="up_category">向上继续浏览%s</string>
+    <string name="down_category">向下继续浏览%s</string>
+
+    <string name="latter">稍后</string>
 </resources>

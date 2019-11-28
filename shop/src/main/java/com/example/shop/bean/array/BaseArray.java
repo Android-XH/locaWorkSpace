@@ -5,6 +5,13 @@ public class BaseArray {
     private String msg;
     private Pagination pagination;
 
+    public BaseArray() {
+    }
+
+    public BaseArray(int code) {
+        this.code = code;
+    }
+
     public int getCode() {
         return code;
     }

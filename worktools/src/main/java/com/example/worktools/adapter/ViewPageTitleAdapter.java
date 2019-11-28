@@ -2,6 +2,7 @@ package com.example.worktools.adapter;
 
 import android.annotation.SuppressLint;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -32,17 +33,6 @@ public class ViewPageTitleAdapter extends FragmentPagerAdapter{
     public int getCount() {
         return fragments.size();
     }
-    @Override
-    public int getItemPosition(Object object) {
-        return POSITION_NONE;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        int hashCode = fragments.get(position).hashCode();
-        return hashCode;
-    }
-
     //    此方法用来显示tab上的名字
     @Override
     public CharSequence getPageTitle(int position) {

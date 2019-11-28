@@ -1,6 +1,7 @@
 package com.example.shop.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,8 +16,8 @@ import butterknife.ButterKnife;
 
 public class ProductBannerAdapter extends ImageViewAdapter<Product.Data> {
 
-    public ProductBannerAdapter(Activity activity) {
-        super(activity);
+    public ProductBannerAdapter(Context mContext) {
+        super(mContext);
     }
 
     @Override

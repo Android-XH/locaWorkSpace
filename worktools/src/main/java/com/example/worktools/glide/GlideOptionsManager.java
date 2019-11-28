@@ -3,6 +3,7 @@ package com.example.worktools.glide;
 import android.content.Context;
 
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.worktools.R;
 
@@ -35,6 +36,7 @@ public class GlideOptionsManager {
         if(mOptions == null) {
             mOptions = new RequestOptions()
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .priority(Priority.HIGH);
         }
         return mOptions;

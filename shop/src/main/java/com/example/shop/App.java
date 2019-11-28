@@ -4,16 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.example.shop.util.PgyUtil;
+import com.example.shop.util.share.SpUtil;
 import com.example.worktools.util.GlideUtil;
-import com.pgyersdk.crash.PgyCrashManager;
 import com.scwang.smartrefresh.header.DeliveryHeader;
-import com.scwang.smartrefresh.header.DropBoxHeader;
-import com.scwang.smartrefresh.header.FlyRefreshHeader;
-import com.scwang.smartrefresh.header.MaterialHeader;
-import com.scwang.smartrefresh.header.PhoenixHeader;
-import com.scwang.smartrefresh.header.StoreHouseHeader;
-import com.scwang.smartrefresh.header.TaurusHeader;
-import com.scwang.smartrefresh.header.WaterDropHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -21,8 +14,6 @@ import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 
 public class App extends Application {
     static {
@@ -48,5 +39,6 @@ public class App extends Application {
         super.onCreate();
         GlideUtil.getInstance().init(getApplicationContext());
         PgyUtil.register();
+        SpUtil.getInstance().init(this);
     }
 }

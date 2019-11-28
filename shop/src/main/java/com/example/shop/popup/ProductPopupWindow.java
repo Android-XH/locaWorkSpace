@@ -11,8 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.shop.R;
-import com.example.shop.util.StringUtil;
-import com.example.worktools.util.LogUtil;
+import com.example.worktools.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;

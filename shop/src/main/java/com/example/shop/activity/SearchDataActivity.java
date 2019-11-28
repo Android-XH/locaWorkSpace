@@ -17,15 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shop.AppBaseActivity;
 import com.example.shop.R;
 import com.example.shop.adapter.ProductVerticalAdapter;
+import com.example.shop.bean.Category;
+import com.example.shop.bean.CategoryItem;
 import com.example.shop.bean.Product;
 import com.example.shop.common.IntentKey;
 import com.example.shop.popup.ProductPopupWindow;
 import com.example.shop.presenter.SearchDataPresenter;
 import com.example.shop.util.StartUtil;
-import com.example.shop.util.StringUtil;
+import com.example.worktools.util.StringUtil;
 import com.example.shop.viewImpl.ISearchDataView;
 import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
-import com.example.worktools.util.LogUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -34,7 +35,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> implements ISearchDataView, OnRecycleItemClickListener<Product.Data>, OnLoadMoreListener, OnRefreshListener, ProductPopupWindow.onDownClick, RadioGroup.OnCheckedChangeListener {
@@ -52,8 +52,10 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     TextView btnSelect;
     private String keyWord;
     private ProductVerticalAdapter adapter;
-    int lineWidth = 5;
     int spanCount = 2;
+    private String title;
+    private Category.Data category;
+    private CategoryItem.Data categoryItem;
     private GridLayoutManager gridLayoutManager;
     private LinearLayoutManager linearLayoutManager;
     private ProductPopupWindow popupWindow;
@@ -65,7 +67,20 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
 
     @Override
     protected void initAppData(Bundle bundle) {
-        keyWord = bundle.getString(IntentKey.KEY_WORD);
+        Object object=bundle.get(IntentKey.SEARCH_VALUE);
+        if(object!=null){
+            if(object instanceof String){
+                keyWord=String.valueOf(object);
+            }
+            if(object instanceof Category.Data){
+                category= (Category.Data) object;
+                title=category.getName();
+            }
+            if(object instanceof CategoryItem.Data){
+                categoryItem= (CategoryItem.Data) object;
+                title=categoryItem.getCategory_name();
+            }
+        }
         adapter = new ProductVerticalAdapter(this);
         adapter.setOnRecycleItemClickListener(this);
     }
@@ -73,6 +88,9 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     @Override
     protected void initView() {
         showBackImb();
+        if(StringUtil.isNoEmpty(title)){
+            setTitle(title);
+        }
         linearLayoutManager = new LinearLayoutManager(this);
         gridLayoutManager = new GridLayoutManager(this, spanCount, GridLayoutManager.VERTICAL, false);
         recycleView.setLayoutManager(gridLayoutManager);
@@ -92,16 +110,27 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
         sortRadioGroup.setOnCheckedChangeListener(this);
-        etSearch.setText(keyWord);
-        etSearch.setSelection(keyWord.length());
+        if(StringUtil.isNoEmpty(keyWord)){
+            etSearch.setText(keyWord);
+            etSearch.setSelection(keyWord.length());
+        }
     }
 
     @Override
     protected SearchDataPresenter initPresenter() {
-        showLoading(getString(R.string.loading_search));
         SearchDataPresenter searchDataPresenter=new SearchDataPresenter();
-        searchDataPresenter.setKeyWord(keyWord);
-        searchDataPresenter.loadRefresh();
+        if(StringUtil.isNoEmpty(keyWord)){
+            searchDataPresenter.setKeyWord(keyWord);
+            searchDataPresenter.loadRefresh();
+        }
+        if(category!=null){
+            searchDataPresenter.setCategoryID(category.getCategory_id());
+            searchDataPresenter.loadRefresh();
+        }
+        if(categoryItem!=null){
+            searchDataPresenter.setCategoryItemID(categoryItem.getCategory_item_id());
+            searchDataPresenter.loadRefresh();
+        }
         return searchDataPresenter;
     }
 
@@ -120,13 +149,9 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
 
     private void searchOfKey() {
         keyWord = etSearch.getText().toString();
-        if (StringUtil.isNoEmpty(keyWord)) {
-            showLoading(getString(R.string.loading_search));
-            getPresenter().setKeyWord(keyWord);
-            getPresenter().loadRefresh();
-        } else {
-            showToastMsg(getString(R.string.empty_input));
-        }
+        showLoading(getString(R.string.loading_search));
+        getPresenter().setKeyWord(keyWord);
+        getPresenter().loadRefresh();
     }
 
     @Override

@@ -51,9 +51,13 @@ public abstract class ListAdapter<T> extends BaseAdapter{
 	protected abstract int getLayout();
 	protected abstract View getHolderView(int position, View convertView, T t);
 
-	public void setList(List<T> list){
+	public void setList(List<T>list){
+		this.mList=list;
+	}
+
+	public void refreshList(List<T> list){
 		this.mList = list;
-		notifyDataSetChanged();
+		notifyDataSetInvalidated();
 	}
 	
 	public void addList(List<T> list){
@@ -68,12 +72,12 @@ public abstract class ListAdapter<T> extends BaseAdapter{
 		return mList;
 	}
 	
-	public void setList(T[] list){
+	public void refreshList(T[] list){
 		List<T> arrayList = new ArrayList<T>(list.length);  
 		for (T t : list) {  
 			arrayList.add(t);  
 		}  
-		setList(arrayList);
+		refreshList(arrayList);
 	}
 	
 	public ListView getListView(){

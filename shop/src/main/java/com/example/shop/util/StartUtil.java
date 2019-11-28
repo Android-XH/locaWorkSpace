@@ -3,10 +3,11 @@ package com.example.shop.util;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.example.shop.activity.CategoryDataActivity;
 import com.example.shop.activity.ProductDetailActivity;
 import com.example.shop.activity.SearchActivity;
 import com.example.shop.activity.SearchDataActivity;
+import com.example.shop.bean.Category;
+import com.example.shop.bean.CategoryItem;
 import com.example.shop.bean.Product;
 import com.example.shop.common.IntentKey;
 import com.example.worktools.util.BaseStart;
@@ -27,14 +28,17 @@ public class StartUtil extends BaseStart{
     public void startSearch(Activity activity){
         startActivity(activity,SearchActivity.class);
     }
-    public void startSearchData(Activity activity,String keyWord){
+    public void startSearchData(Activity activity,Object value){
         Bundle bundle=new Bundle();
-        bundle.putString(IntentKey.KEY_WORD,keyWord);
+        if(value instanceof String){
+            bundle.putString(IntentKey.SEARCH_VALUE,String.valueOf(value));
+        }
+        if(value instanceof Category.Data){
+            bundle.putParcelable(IntentKey.SEARCH_VALUE,(Category.Data)value);
+        }
+        if(value instanceof CategoryItem.Data){
+            bundle.putParcelable(IntentKey.SEARCH_VALUE,(CategoryItem.Data)value);
+        }
         startActivity(activity,bundle, SearchDataActivity.class);
-    }
-    public void startCategoryData(Activity activity,String mTitle){
-        Bundle bundle=new Bundle();
-        bundle.putString(IntentKey.TITLE,mTitle);
-        startActivity(activity,bundle, CategoryDataActivity.class);
     }
 }

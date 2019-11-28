@@ -22,7 +22,8 @@ import com.example.shop.bean.Product;
 import com.example.shop.common.IntentKey;
 import com.example.shop.presenter.ProductDetailPresenter;
 import com.example.shop.util.StartUtil;
-import com.example.shop.util.StringUtil;
+import com.example.worktools.dialog.dialoginstener.DialogNoClick;
+import com.example.worktools.util.StringUtil;
 import com.example.shop.view.LineTextView;
 import com.example.shop.viewImpl.IProductDetailView;
 import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
@@ -33,11 +34,9 @@ import com.example.worktools.util.CheckApkExist;
 import com.example.worktools.util.DpUtil;
 import com.example.worktools.view.ImageTextViewPager;
 
-import java.io.File;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.example.worktools.util.CheckApkExist.taobaoPkgName;
@@ -142,7 +141,7 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
                                 String message = "我在"+getString(R.string.app_name)+"发现了一个很实惠的["+title+"]，复制该口令[" + key + "]打开淘宝APP即可查看优惠详情！";
                                 shareMessage(title,message);
                             }
-                        });
+                        }).setLeftButton(R.string.latter);
             }
             shareDialog.show();
         } else {

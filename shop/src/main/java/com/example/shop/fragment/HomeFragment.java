@@ -1,33 +1,25 @@
-package com.example.shop.activity;
+package com.example.shop.fragment;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shop.AppBaseActivity;
 import com.example.shop.R;
+import com.example.shop.activity.MainActivity;
 import com.example.shop.adapter.ProductBannerAdapter;
-import com.example.shop.adapter.ProductImageAdapter;
 import com.example.shop.adapter.ProductVerticalAdapter;
 import com.example.shop.bean.Product;
 import com.example.shop.presenter.HomePresenter;
-import com.example.shop.util.PgyUtil;
 import com.example.shop.util.StartUtil;
 import com.example.shop.viewImpl.IHomeView;
 import com.example.worktools.adapter.ImageViewAdapter;
 import com.example.worktools.adapter.listener.OnRecycleItemClickListener;
-import com.example.worktools.baseview.BaseActivity;
+import com.example.worktools.baseview.BaseFragment;
 import com.example.worktools.recycle.SpacesItemDecoration;
-import com.example.worktools.util.LogUtil;
 import com.example.worktools.view.ImageTextViewPager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -39,14 +31,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.example.shop.common.ConfigCommon.INSTALL_PACKAGES_REQUEST_CODE;
-import static com.example.shop.common.ConfigCommon.WRITE_EXTERNAL_STORAGE;
-import static com.example.worktools.baseview.BaseActivity.TransitionMode.FADE;
-import static com.example.worktools.baseview.BaseActivity.TransitionMode.SCALE;
 import static com.example.worktools.util.DpUtil.dip2px;
 
-
-public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHomeView, OnRefreshListener, OnRecycleItemClickListener<Product.Data>, OnLoadMoreListener, ImageViewAdapter.onItemClickListener<Product.Data>, BaseActivity.RequestPermissionCallBack {
+public class HomeFragment extends BaseFragment<HomePresenter, MainActivity> implements IHomeView, OnRefreshListener, OnLoadMoreListener, ImageViewAdapter.onItemClickListener<Product.Data>, OnRecycleItemClickListener<Product.Data> {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.vp_banner)
@@ -60,42 +47,22 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
 
     private Context mContext;
     private final int spanCount=2;//列表每行列数
-    @Override
-    protected int setContentView() {
-        return R.layout.activity_home;
+    public static HomeFragment getInstance(){
+        return new HomeFragment();
     }
 
     @Override
-    protected HomePresenter initPresenter() {
-        return new HomePresenter();
+    protected int getLayout() {
+        return R.layout.fragment_home;
     }
-
     @Override
-    protected void initAppData(Bundle bundle) {
-        if (ContextCompat.checkSelfPermission(getBaseContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(HomeActivity.this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    WRITE_EXTERNAL_STORAGE);
-        } else {
-            if (Build.VERSION.SDK_INT >= 26) {
-                boolean b = getPackageManager().canRequestPackageInstalls();
-                if (b) {
-                    PgyUtil.Update();
-                } else {
-                    requestPermissions(this,new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES},this);
-                }
-            } else {
-                PgyUtil.Update();
-            }
-        }
-        this.mContext=this;
-        couponRecommendAdapter = new ProductVerticalAdapter(this);
-        adapter = new ProductBannerAdapter(this);
+    protected void initData(Bundle bundle) {
+        this.mContext=getAppActivity();
+        couponRecommendAdapter = new ProductVerticalAdapter(mContext);
+        adapter = new ProductBannerAdapter(mContext);
     }
-
     @Override
     protected void initView() {
-        setTitle(R.string.home);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
         adapter.setOnItemClickListener(this);
@@ -128,7 +95,6 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
         refreshLayout.finishLoadMore();
     }
 
-
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         getPresenter().loadRefresh();
@@ -138,67 +104,39 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements IHom
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         getPresenter().loadMore();
     }
-    //
     @OnClick({R.id.tv_search,R.id.tv_clothes, R.id.tv_accessories, R.id.tv_cosmetics, R.id.tv_bag})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_search:
-                StartUtil.getInstance().startSearch(this);
+                StartUtil.getInstance().startSearch(getAppActivity());
                 break;
             case R.id.tv_clothes:
-                StartUtil.getInstance().startCategoryData(this,getString(R.string.clothes));
                 break;
             case R.id.tv_accessories:
-                StartUtil.getInstance().startCategoryData(this,getString(R.string.accessories));
                 break;
             case R.id.tv_cosmetics:
-                StartUtil.getInstance().startCategoryData(this,getString(R.string.cosmetics));
                 break;
             case R.id.tv_bag:
-                StartUtil.getInstance().startCategoryData(this,getString(R.string.bag));
                 break;
         }
     }
 
     @Override
     public void onItemClick(Product.Data data, int position) {
-        StartUtil.getInstance().startProductDetail(this, data);
+        StartUtil.getInstance().startProductDetail(getAppActivity(), data);
     }
 
     @Override
     public void onItemClick(Product.Data data) {
-        StartUtil.getInstance().startProductDetail(this, data);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        vpBanner.setPause(false);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        vpBanner.setPause(true);
-    }
-
-    @Override
-    protected TransitionMode getOverridePendingTransitionMode() {
-        return FADE;
+        StartUtil.getInstance().startProductDetail(getAppActivity(), data);
     }
     @Override
-    protected void onDestroy() {
+    protected HomePresenter initPresent() {
+        return new HomePresenter();
+    }
+    @Override
+    public void onDestroy() {
         super.onDestroy();
         vpBanner.setDestroy(true);
-    }
-
-    @Override
-    public void granted() {
-        PgyUtil.Update();
-    }
-
-    @Override
-    public void denied() {
-
     }
 }

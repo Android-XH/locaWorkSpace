@@ -14,12 +14,14 @@ import com.example.worktools.presenter.BasePresenter;
 import java.util.List;
 
 public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchDataView> {
-    private String keyWord;
-    private String minPrice;
-    private String maxPrice;
-    private String loadSort;
-    private String[] type;
+    private  BaseParam baseParam;
+    private Pagination pagination;
     private int page;
+
+    public SearchDataPresenter() {
+        baseParam=new BaseParam();
+        pagination=new Pagination(page,20);
+    }
 
     @Override
     public void getData() {
@@ -32,41 +34,46 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
     }
 
     public void setKeyWord(String keyWord) {
-        this.keyWord = keyWord;
+        baseParam.setKeyWord(keyWord);
+    }
+
+    public void setCategoryID(int category_id) {
+        baseParam.setCategory_id(category_id);
+    }
+
+    public void setCategoryItemID(int category_item_id) {
+        baseParam.setCategory_item_id(category_item_id);
     }
 
     public void setMinPrice(String minPrice) {
-        this.minPrice = minPrice;
+        baseParam.setMinPrice(minPrice);
     }
 
     public void setMaxPrice(String maxPrice) {
-        this.maxPrice = maxPrice;
+        baseParam.setMaxPrice(maxPrice);
     }
 
     public void setType(String[] type) {
-        this.type = type;
+        baseParam.setTypes(type);
     }
 
     public void setLoadSort(String loadSort) {
-        this.loadSort = loadSort;
+        baseParam.setSort(loadSort);
     }
 
     public void loadRefresh(){
         page=1;
+        pagination.setPage(page);
+        baseParam.setPagination(pagination);
         getProductList(LoadStatus.LOAD_REFRESH);
     }
     public void loadMore(){
         page+=1;
+        pagination.setPage(page);
+        baseParam.setPagination(pagination);
         getProductList(LoadStatus.LOAD_MORE);
     }
     private void getProductList(LoadStatus status){
-        BaseParam baseParam=new BaseParam();
-        baseParam.setKeyWord(keyWord);
-        baseParam.setMinPrice(minPrice);
-        baseParam.setMaxPrice(maxPrice);
-        baseParam.setSort(loadSort);
-        baseParam.setTypes(type);
-        baseParam.setPagination(new Pagination(page,20));
         getMode().getProductList(baseParam, new CallBack<ProductList>() {
             @Override
             public void onSuccess(ProductList productList) {

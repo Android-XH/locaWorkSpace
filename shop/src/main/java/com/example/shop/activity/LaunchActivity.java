@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.shop.BuildConfig;
 import com.example.shop.R;
-import com.example.shop.activity.HomeActivity;
 import com.example.shop.view.LaunchProgressView;
 import com.example.worktools.util.AppVertionUtil;
 
@@ -58,7 +57,7 @@ public class LaunchActivity extends Activity implements LaunchProgressView.OnPro
 
     @Override
     public void onDone() {
-        startActivity(new Intent(LaunchActivity.this, HomeActivity.class));
+        startActivity(new Intent(LaunchActivity.this, MainActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
 

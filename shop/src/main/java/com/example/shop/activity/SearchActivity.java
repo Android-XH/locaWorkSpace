@@ -12,14 +12,13 @@ import com.example.shop.adapter.SearchTagAdapter;
 import com.example.shop.bean.Search;
 import com.example.shop.presenter.SearchPresenter;
 import com.example.shop.util.StartUtil;
-import com.example.shop.util.StringUtil;
+import com.example.worktools.util.StringUtil;
 import com.example.shop.viewImpl.ISearchView;
 import com.example.worktools.view.flowlayout.TagFlowLayout;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchActivity extends AppBaseActivity<SearchPresenter> implements TagFlowLayout.OnTagClickListener<Search.Data>, ISearchView {

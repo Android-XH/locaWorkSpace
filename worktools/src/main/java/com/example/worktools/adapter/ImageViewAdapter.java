@@ -28,8 +28,8 @@ public abstract class ImageViewAdapter<T> extends PagerAdapter {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public ImageViewAdapter(Activity activity) {
-        this.mContext=activity;
+    public ImageViewAdapter(Context context) {
+        this.mContext=context;
     }
     public void setData(List<T>data){
         this.data=data;
