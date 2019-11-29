@@ -69,9 +69,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, MainActivity> impl
         vpBanner.setWheel(true);
         vpBanner.setAdapter(adapter);
         couponRecommendAdapter.setOnRecycleItemClickListener(this);
-        int lineWidth=5;
         rvCosmetics.setLayoutManager(new GridLayoutManager(mContext, spanCount,GridLayoutManager.VERTICAL,false));
-        rvCosmetics.addItemDecoration(new SpacesItemDecoration(dip2px(lineWidth), dip2px(lineWidth), getResources().getColor(R.color.line)));
         rvCosmetics.setAdapter(couponRecommendAdapter);
     }
     @Override
@@ -111,12 +109,16 @@ public class HomeFragment extends BaseFragment<HomePresenter, MainActivity> impl
                 StartUtil.getInstance().startSearch(getAppActivity());
                 break;
             case R.id.tv_clothes:
+                StartUtil.getInstance().startSearchData(getAppActivity(),2);
                 break;
             case R.id.tv_accessories:
+                StartUtil.getInstance().startSearchData(getAppActivity(),3);
                 break;
             case R.id.tv_cosmetics:
+                StartUtil.getInstance().startSearchData(getAppActivity(),1);
                 break;
             case R.id.tv_bag:
+                StartUtil.getInstance().startSearchData(getAppActivity(),4);
                 break;
         }
     }

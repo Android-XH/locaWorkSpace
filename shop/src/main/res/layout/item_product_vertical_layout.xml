@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imv_product_image"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
         android:src="@drawable/icon_default_avatar" />
 
     <TextView

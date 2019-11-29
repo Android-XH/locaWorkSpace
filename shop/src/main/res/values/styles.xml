@@ -18,11 +18,11 @@
     </style>
     <style name="TextProductNewPrice">
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textSize">@dimen/sp15</item>
     </style>
     <style name="TextProductItemTitle">
         <item name="android:textColor">@color/black_66</item>
-        <item name="android:textSize">@dimen/sp15</item>
+        <item name="android:textSize">@dimen/sp14</item>
     </style>
     <style name="TextProductCoupon">
         <item name="android:textColor">@color/colorPrimary</item>
@@ -42,10 +42,24 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textSize">@dimen/sp14</item>
         <item name="android:textColor">@color/black_66</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@drawable/button_white</item>
+        <item name="android:paddingTop">@dimen/layout_padding</item>
+        <item name="android:paddingBottom">@dimen/layout_padding</item>
+    </style>
+    <style name="SearchTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:padding">@dimen/layout_padding</item>
+        <item name="android:text">请输入关键词...</item>
+        <item name="android:paddingLeft">@dimen/layout_padding</item>
+        <item name="android:drawableLeft">@drawable/icon_search</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:background">@drawable/shape_layout_gray_white_50dp</item>
     </style>
     <style name="TextContentTitle">
         <item name="android:background">@color/white</item>

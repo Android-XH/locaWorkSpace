@@ -15,6 +15,16 @@ public class BaseParam {
     private String[] types;//平台类型0 淘宝 1：天猫 2：京东 3：拼多多
     private String minPrice;//最小价格
     private String maxPrice;//最大价格
+    private int menu_id;
+
+    public int getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(int menu_id) {
+        this.menu_id = menu_id;
+    }
+
     public Pagination getPagination() {
         if(pagination==null){
             pagination=new Pagination(1,20);

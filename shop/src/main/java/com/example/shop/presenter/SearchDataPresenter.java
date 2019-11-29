@@ -36,7 +36,9 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
     public void setKeyWord(String keyWord) {
         baseParam.setKeyWord(keyWord);
     }
-
+    public void setMenuID(int menuID) {
+        baseParam.setMenu_id(menuID);
+    }
     public void setCategoryID(int category_id) {
         baseParam.setCategory_id(category_id);
     }

@@ -164,7 +164,7 @@ public class CategoryListFragment extends BaseFragment<MCategoryPresenter, MainA
         List<MCategory.Data> data = dataList.getData();
         if (data.size() > 0) {
             if (data.size() > 1 && data.get(1) != null) {
-                tvRefreshTitle.setText(String.format(getString(R.string.up_category),data.get(1).getName()));
+                tvRefreshBottom.setText(String.format(getString(R.string.down_category),data.get(1).getName()));
             }
             data.get(0).setSelect(true);
             contentAdapter.refreshList(data.get(0).getCategories());

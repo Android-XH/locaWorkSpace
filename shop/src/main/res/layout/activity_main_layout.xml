@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/black_ea"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.viewpager.widget.ViewPager
@@ -10,14 +11,16 @@
         android:layout_height="0dp"
         android:layout_weight="1">
     </androidx.viewpager.widget.ViewPager>
+    <include layout="@layout/include_line_layout"></include>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tl_menu"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
         app:tabMode="fixed"
         app:tabIndicatorColor="@color/transparent"
         app:tabIndicatorHeight="0dp"
-        app:tabTextColor="@android:color/black"
+        app:tabTextColor="@color/black_66"
         app:tabSelectedTextColor="@color/colorPrimary">
     </com.google.android.material.tabs.TabLayout>
 </LinearLayout>

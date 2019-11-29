@@ -50,6 +50,7 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     RadioButton sortRadioPrice;
     @BindView(R.id.btn_select)
     TextView btnSelect;
+    private int menuID;
     private String keyWord;
     private ProductVerticalAdapter adapter;
     int spanCount = 2;
@@ -72,13 +73,14 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
             if(object instanceof String){
                 keyWord=String.valueOf(object);
             }
+            if(object instanceof Integer){
+                menuID=(Integer)object;
+            }
             if(object instanceof Category.Data){
                 category= (Category.Data) object;
-                title=category.getName();
             }
             if(object instanceof CategoryItem.Data){
                 categoryItem= (CategoryItem.Data) object;
-                title=categoryItem.getCategory_name();
             }
         }
         adapter = new ProductVerticalAdapter(this);
@@ -88,20 +90,15 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
     @Override
     protected void initView() {
         showBackImb();
-        if(StringUtil.isNoEmpty(title)){
-            setTitle(title);
-        }
         linearLayoutManager = new LinearLayoutManager(this);
         gridLayoutManager = new GridLayoutManager(this, spanCount, GridLayoutManager.VERTICAL, false);
         recycleView.setLayoutManager(gridLayoutManager);
-//        recycleView.addItemDecoration(new SpacesItemDecoration(dip2px(lineWidth), dip2px(lineWidth), getResources().getColor(R.color.line)));
         adapter.setViewType(0);
         recycleView.setAdapter(adapter);
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    //点击搜索要做的操作
                     searchOfKey();
                 }
                 return false;
@@ -121,6 +118,10 @@ public class SearchDataActivity extends AppBaseActivity<SearchDataPresenter> imp
         SearchDataPresenter searchDataPresenter=new SearchDataPresenter();
         if(StringUtil.isNoEmpty(keyWord)){
             searchDataPresenter.setKeyWord(keyWord);
+            searchDataPresenter.loadRefresh();
+        }
+        if(menuID!=0){
+            searchDataPresenter.setMenuID(menuID);
             searchDataPresenter.loadRefresh();
         }
         if(category!=null){

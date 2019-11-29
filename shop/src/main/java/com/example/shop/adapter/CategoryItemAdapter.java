@@ -10,6 +10,7 @@ import com.example.shop.R;
 import com.example.shop.bean.CategoryItem;
 import com.example.worktools.adapter.BaseListRecyclerAdapter;
 import com.example.worktools.adapter.holder.RecyclerHolder;
+import com.example.worktools.util.GlideUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +34,7 @@ public class CategoryItemAdapter extends BaseListRecyclerAdapter<CategoryItem.Da
     @Override
     public void convert(CategoryItemAdapter.ViewHolder holder, CategoryItem.Data data, int position) {
         holder.tvName.setText(data.getCategory_name());
+        GlideUtil.getInstance().loadImg(R.drawable.bijiben,holder.imvIcon);
     }
 
     static

@@ -33,6 +33,9 @@ public class StartUtil extends BaseStart{
         if(value instanceof String){
             bundle.putString(IntentKey.SEARCH_VALUE,String.valueOf(value));
         }
+        if(value instanceof Integer){
+            bundle.putInt(IntentKey.SEARCH_VALUE, (Integer) value);
+        }
         if(value instanceof Category.Data){
             bundle.putParcelable(IntentKey.SEARCH_VALUE,(Category.Data)value);
         }
