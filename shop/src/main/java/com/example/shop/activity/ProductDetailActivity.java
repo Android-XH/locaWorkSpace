@@ -34,6 +34,7 @@ import com.example.worktools.util.CheckApkExist;
 import com.example.worktools.util.DpUtil;
 import com.example.worktools.view.ImageTextViewPager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -118,7 +119,7 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
         tvNewPrice.setText(String.format("%.1f", data.getPrice() - data.getCoupon_amount()));
         tvLocation.setText(data.getShop_city());
         tvVolume.setText("已售：" + data.getSell_count());
-        List<String> imageList = data.getSmall_images();
+        List<String> imageList = new ArrayList<>(data.getSmall_images());
         imageList.add(0, data.getImg_url());
         adapter.setData(imageList);
     }

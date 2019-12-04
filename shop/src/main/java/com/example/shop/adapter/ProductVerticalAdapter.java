@@ -66,7 +66,6 @@ public class ProductVerticalAdapter extends BaseListRecyclerAdapter<Product.Data
         }else{
             holder.tvVolume.setText(String.format("已售：%s",product.getSell_count()));
         }
-
     }
 
 

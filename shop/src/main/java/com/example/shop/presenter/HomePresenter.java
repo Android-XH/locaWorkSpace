@@ -29,6 +29,8 @@ public class HomePresenter extends BasePresenter<IProductMode, IHomeView> {
     }
 
     public void loadRefresh() {
+        loadBanner=false;
+        loadCosmetics=false;
         page=1;
         getRecommend();
         getCosmetics(LoadStatus.LOAD_REFRESH);
@@ -58,15 +60,19 @@ public class HomePresenter extends BasePresenter<IProductMode, IHomeView> {
         BaseParam baseParam=new BaseParam();
         baseParam.setPagination(new Pagination(page,6));
         baseParam.setSort("volume");
+        baseParam.setMinPrice("10");
+        baseParam.setMaxPrice("200");
         getMode().getProductList(baseParam, new CallBack<ProductList>() {
             @Override
             public void onSuccess(ProductList productList) {
                 switch (status){
                     case LOAD_MORE:
                         getView().onLoadMore(productList.getData());
+
                         break;
                     case LOAD_REFRESH:
                         getView().onLoadRefresh(productList.getData());
+
                         loadCosmetics=true;
                         loadDone();
                         break;
@@ -82,7 +88,7 @@ public class HomePresenter extends BasePresenter<IProductMode, IHomeView> {
         });
     }
     private void loadDone(){
-        if(loadBanner&loadCosmetics){
+        if(loadBanner&&loadCosmetics){
             getView().onFinishRefresh(true);
         }
     }

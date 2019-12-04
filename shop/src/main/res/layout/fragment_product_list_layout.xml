@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scrollbars="none"
-            android:divider="@color/transparent"
+            android:divider="@color/black_ea"
             android:dividerHeight="0dp"
             />
 

@@ -71,11 +71,7 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.imb_back:
-                finish();
-                break;
-        }
+        finish();
     }
 
     @Override

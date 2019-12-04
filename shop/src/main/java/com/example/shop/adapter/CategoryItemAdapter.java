@@ -34,7 +34,7 @@ public class CategoryItemAdapter extends BaseListRecyclerAdapter<CategoryItem.Da
     @Override
     public void convert(CategoryItemAdapter.ViewHolder holder, CategoryItem.Data data, int position) {
         holder.tvName.setText(data.getCategory_name());
-        GlideUtil.getInstance().loadImg(R.drawable.bijiben,holder.imvIcon);
+//        GlideUtil.getInstance().loadImg("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575282259181&di=1bdb36548d2ea5a3e007e2356bcaab67&imgtype=0&src=http%3A%2F%2Fimg.jianke.com%2Fupload%2Fprodimage%2F201704%2F201741910169810.jpg",holder.imvIcon);
     }
 
     static

@@ -8,5 +8,6 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:id="@+id/imv_product_detail"
+        android:transitionName="@string/product_image"
         />
 </LinearLayout>

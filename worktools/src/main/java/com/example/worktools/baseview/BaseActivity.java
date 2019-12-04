@@ -166,8 +166,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
                         if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i])) {
                             new AlertDialog.Builder(BaseActivity.this).setTitle("PermissionTest")//设置对话框标题
                                     .setMessage(
-                                            "获取相关权限失败:" + permissionName +
-                                                    "将导致部分功能无法正常使用，需要到设置页面手动授权")//设置显示的内容
+                                            "获取相关权限失败:"
+                                            + permissionName
+                                            +"将导致部分功能无法正常使用，需要到设置页面手动授权")//设置显示的内容
                                     .setPositiveButton("去授权", new DialogInterface.OnClickListener() {//添加确定按钮
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
