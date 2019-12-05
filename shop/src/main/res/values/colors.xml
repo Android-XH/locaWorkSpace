@@ -4,6 +4,10 @@
     <color name="colorPrimaryDark">#d81e06</color>
     <color name="colorAccent">#d81e06</color>
 
+    <color name="appTheme">#F8F8F8 </color>
+
     <color name="colorAccentTran80">#80D87A9C</color>
     <color name="colorPrimaryTran80">#80d81e06</color>
+    <color name="blue_text">#01D2B3</color>
+    <color name="red_text">#d81e06</color>
 </resources>

@@ -103,4 +103,30 @@
         <item name="android:textColor">@drawable/radio_text_select_color</item>
         <item name="android:textSize">@dimen/sp14</item>
     </style>
+    <style name="EditTextHintStyle">
+        <item name="android:textColorHint">@color/black_99</item>
+        <item name="android:textColor">@color/black_33</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+    <style name="EditTextCountStyle">
+        <item name="android:textColorHint">@color/black_99</item>
+        <item name="android:textColor">@color/black_99</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+    <style name="EditErrTextStyle">
+        <item name="android:textColorHint">@color/red</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">16dp</item>
+    </style>
+    <style name="Button_Blue">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/home_open_button_bkg</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

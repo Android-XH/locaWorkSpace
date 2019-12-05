@@ -1,25 +1,20 @@
 package com.example.shop.mode.impl;
 
 import com.example.shop.api.Method;
-import com.example.shop.api.param.BaseParam;
-import com.example.shop.api.param.ErrMessage;
+import com.example.shop.api.param.ProductParam;
 import com.example.shop.bean.Product;
 import com.example.shop.bean.TaoKey;
-import com.example.shop.bean.array.BaseArray;
-import com.example.shop.bean.array.Pagination;
 import com.example.shop.bean.array.ProductList;
 import com.example.shop.mode.IProductMode;
 import com.example.worktools.model.CallBack;
 import com.example.worktools.util.GsonUtil;
 
-import java.util.List;
-
-import static com.example.shop.api.param.ErrMessage.*;
+import static com.example.shop.api.common.ErrMessage.*;
 
 public class ProductModeImpl extends BaseAppMode implements IProductMode {
     @Override
-    public void getProductList(BaseParam baseParam, CallBack<ProductList> callBack) {
-        get(Method.GET_PRODUCT_LIST,getParam().getProductList(baseParam), new CallBack() {
+    public void getProductList(ProductParam productParam, CallBack<ProductList> callBack) {
+        get(Method.GET_PRODUCT_LIST,getParam().getProductList(productParam), new CallBack() {
             @Override
             public void onSuccess(Object o) {
                 ProductList productList= GsonUtil.parseData(o,ProductList.class);

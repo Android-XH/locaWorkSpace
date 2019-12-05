@@ -3,8 +3,8 @@ package com.example.shop.api.param;
 
 import com.example.shop.bean.array.Pagination;
 
-public class BaseParam {
-    private Pagination pagination;
+public class ProductParam {
+    private Pagination pagination;//分页信息
     private String keyWord;//搜索关键词
     private int id;//条目ID
     private int pid;//商品ID

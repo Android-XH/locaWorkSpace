@@ -1,13 +1,12 @@
 package com.example.shop.mode.impl;
 
 import com.example.shop.api.Method;
-import com.example.shop.api.param.ErrMessage;
+import com.example.shop.api.common.ErrMessage;
 import com.example.shop.bean.array.MCategoryList;
 import com.example.shop.mode.IMCategoryMode;
 import com.example.shop.util.share.SpUtil;
 import com.example.worktools.model.CallBack;
 import com.example.worktools.util.GsonUtil;
-import com.example.worktools.util.LogUtil;
 
 public class MenuCategoryMode extends BaseAppMode implements IMCategoryMode {
     @Override

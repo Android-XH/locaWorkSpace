@@ -1,9 +1,7 @@
 package com.example.shop.mode.impl;
 
 import com.example.shop.api.Method;
-import com.example.shop.api.param.BaseParam;
-import com.example.shop.api.param.ErrMessage;
-import com.example.shop.bean.array.ProductList;
+import com.example.shop.api.common.ErrMessage;
 import com.example.shop.bean.array.SearchList;
 import com.example.shop.mode.ISearchMode;
 import com.example.worktools.model.CallBack;

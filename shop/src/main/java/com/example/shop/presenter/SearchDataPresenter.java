@@ -1,7 +1,6 @@
 package com.example.shop.presenter;
 
-import com.example.shop.R;
-import com.example.shop.api.param.BaseParam;
+import com.example.shop.api.param.ProductParam;
 import com.example.shop.bean.array.Pagination;
 import com.example.shop.bean.array.ProductList;
 import com.example.shop.mode.IProductMode;
@@ -11,15 +10,13 @@ import com.example.worktools.adapter.LoadStatus;
 import com.example.worktools.model.CallBack;
 import com.example.worktools.presenter.BasePresenter;
 
-import java.util.List;
-
 public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchDataView> {
-    private  BaseParam baseParam;
+    private ProductParam productParam;
     private Pagination pagination;
     private int page;
 
     public SearchDataPresenter() {
-        baseParam=new BaseParam();
+        productParam =new ProductParam();
         pagination=new Pagination(page,20);
     }
 
@@ -34,49 +31,49 @@ public class SearchDataPresenter extends BasePresenter<IProductMode, ISearchData
     }
 
     public void setKeyWord(String keyWord) {
-        baseParam.setKeyWord(keyWord);
+        productParam.setKeyWord(keyWord);
     }
     public void setMenuID(int menuID) {
-        baseParam.setMenu_id(menuID);
+        productParam.setMenu_id(menuID);
     }
     public void setCategoryID(int category_id) {
-        baseParam.setCategory_id(category_id);
+        productParam.setCategory_id(category_id);
     }
 
     public void setCategoryItemID(int category_item_id) {
-        baseParam.setCategory_item_id(category_item_id);
+        productParam.setCategory_item_id(category_item_id);
     }
 
     public void setMinPrice(String minPrice) {
-        baseParam.setMinPrice(minPrice);
+        productParam.setMinPrice(minPrice);
     }
 
     public void setMaxPrice(String maxPrice) {
-        baseParam.setMaxPrice(maxPrice);
+        productParam.setMaxPrice(maxPrice);
     }
 
     public void setType(String[] type) {
-        baseParam.setTypes(type);
+        productParam.setTypes(type);
     }
 
     public void setLoadSort(String loadSort) {
-        baseParam.setSort(loadSort);
+        productParam.setSort(loadSort);
     }
 
     public void loadRefresh(){
         page=1;
         pagination.setPage(page);
-        baseParam.setPagination(pagination);
+        productParam.setPagination(pagination);
         getProductList(LoadStatus.LOAD_REFRESH);
     }
     public void loadMore(){
         page+=1;
         pagination.setPage(page);
-        baseParam.setPagination(pagination);
+        productParam.setPagination(pagination);
         getProductList(LoadStatus.LOAD_MORE);
     }
     private void getProductList(LoadStatus status){
-        getMode().getProductList(baseParam, new CallBack<ProductList>() {
+        getMode().getProductList(productParam, new CallBack<ProductList>() {
             @Override
             public void onSuccess(ProductList productList) {
                 Pagination pagination=productList.getPagination();

@@ -1,6 +1,6 @@
 package com.example.shop.presenter;
 
-import com.example.shop.api.param.BaseParam;
+import com.example.shop.api.param.ProductParam;
 import com.example.shop.bean.Product;
 import com.example.shop.bean.TaoKey;
 import com.example.shop.bean.array.Pagination;
@@ -45,10 +45,10 @@ public class ProductDetailPresenter extends BasePresenter<IProductMode, IProduct
         Pagination pagination=new Pagination();
         pagination.setPage(1);
         pagination.setSize(6);
-        BaseParam baseParam=new BaseParam();
-        baseParam.setId(id);
-        baseParam.setPagination(pagination);
-        getMode().getProductList(baseParam, new CallBack<ProductList>() {
+        ProductParam productParam =new ProductParam();
+        productParam.setId(id);
+        productParam.setPagination(pagination);
+        getMode().getProductList(productParam, new CallBack<ProductList>() {
             @Override
             public void onSuccess(ProductList productList) {
                 getView().onLoadProductList(productList.getData());

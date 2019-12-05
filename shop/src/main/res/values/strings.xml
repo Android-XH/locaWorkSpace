@@ -22,4 +22,7 @@
 
     <string name="latter">稍后</string>
     <string name="product_image">product_image</string>
+    <string name="chose_chrome">请选择浏览器</string>
+    <string name="login_no_pass">免密登录</string>
+    <string name="no_user_name">还没有真惠省账号？</string>
 </resources>

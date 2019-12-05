@@ -2,7 +2,7 @@ package com.example.shop.mode.impl;
 
 import com.example.shop.api.Host;
 import com.example.shop.api.param.IMethodParam;
-import com.example.shop.api.param.MethodParamImpl;
+import com.example.shop.api.param.impl.MethodParamImpl;
 import com.example.worktools.model.BaseMode;
 
 

@@ -1,9 +1,8 @@
 package com.example.shop.presenter;
 
-import com.example.shop.api.param.BaseParam;
+import com.example.shop.api.param.ProductParam;
 import com.example.shop.bean.array.Pagination;
 import com.example.shop.bean.array.ProductList;
-import com.example.shop.common.ConfigCommon;
 import com.example.shop.mode.IProductMode;
 import com.example.shop.mode.impl.ProductModeImpl;
 import com.example.shop.viewImpl.IHomeView;
@@ -57,12 +56,12 @@ public class HomePresenter extends BasePresenter<IProductMode, IHomeView> {
         });
     }
     private void getCosmetics(LoadStatus status){
-        BaseParam baseParam=new BaseParam();
-        baseParam.setPagination(new Pagination(page,6));
-        baseParam.setSort("volume");
-        baseParam.setMinPrice("10");
-        baseParam.setMaxPrice("200");
-        getMode().getProductList(baseParam, new CallBack<ProductList>() {
+        ProductParam productParam =new ProductParam();
+        productParam.setPagination(new Pagination(page,6));
+        productParam.setSort("volume");
+        productParam.setMinPrice("10");
+        productParam.setMaxPrice("200");
+        getMode().getProductList(productParam, new CallBack<ProductList>() {
             @Override
             public void onSuccess(ProductList productList) {
                 switch (status){

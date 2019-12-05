@@ -153,7 +153,7 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
                         .setRightClick(new DialogYesClick() {
                             @Override
                             public void onYseClick(String msg) {
-                                setParimaryClip(key);
+                                setPrimaryClip(key);
                                 Intent intent = getPackageManager().getLaunchIntentForPackage(taobaoPkgName);
                                 startActivity(intent);
                             }
@@ -163,11 +163,9 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
         }
     }
 
-    private void setParimaryClip(String message) {
+    private void setPrimaryClip(String message) {
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        // 创建普通字符型ClipData
         ClipData mClipData = ClipData.newPlainText("simple text", message);
-        // 将ClipData内容放到系统剪贴板里。
         cm.setPrimaryClip(mClipData);
     }
     private void shareMessage(String title,String message){
@@ -199,7 +197,7 @@ public class ProductDetailActivity extends AppBaseActivity<ProductDetailPresente
                     Intent intent = new Intent();
                     intent.setData(uri);//Url 就是你要打开的网址
                     intent.setAction(Intent.ACTION_VIEW);
-                    startActivity(Intent.createChooser(intent, "请选择浏览器"));
+                    startActivity(Intent.createChooser(intent, getString(R.string.chose_chrome)));
                 }
                 break;
         }
