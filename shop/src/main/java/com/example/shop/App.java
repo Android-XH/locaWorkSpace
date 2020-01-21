@@ -39,6 +39,6 @@ public class App extends Application {
         super.onCreate();
         GlideUtil.getInstance().init(getApplicationContext());
         PgyUtil.register();
-        SpUtil.getInstance().init(this);
+        SpUtil.register(this);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.worktools.rxjava.observer;
 
-import com.example.worktools.rxjava.observer.FileUploadObserver;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -20,9 +18,9 @@ import okio.Sink;
 
 public class UploadFileRequestBody extends RequestBody {
     private RequestBody mRequestBody;
-    private FileUploadObserver<ResponseBody> fileUploadObserver;
+    private AbstractFileUploadObserver<ResponseBody> fileUploadObserver;
 
-    public UploadFileRequestBody(File file, FileUploadObserver<ResponseBody> fileUploadObserver) {
+    public UploadFileRequestBody(File file, AbstractFileUploadObserver<ResponseBody> fileUploadObserver) {
         this.mRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
         this.fileUploadObserver = fileUploadObserver;
     }
@@ -58,20 +56,17 @@ public class UploadFileRequestBody extends RequestBody {
 
         private long bytesWritten = 0;
 
-        public CountingSink(Sink delegate) {
+        CountingSink(Sink delegate) {
             super(delegate);
         }
 
         @Override
         public void write(Buffer source, long byteCount) throws IOException {
             super.write(source, byteCount);
-
             bytesWritten += byteCount;
             if (fileUploadObserver != null) {
                 fileUploadObserver.onProgressChange(bytesWritten, contentLength());
             }
-
         }
-
     }
 }

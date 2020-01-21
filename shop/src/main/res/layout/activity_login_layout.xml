@@ -130,7 +130,6 @@
                 android:inputType="textPassword"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -139,7 +138,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             style="@style/Button_Blue"
-            android:text="登录"
+            android:text="@string/login"
             android:id="@+id/btn_login_button"
             />
         <TextView
@@ -151,6 +150,7 @@
             android:textColor="@color/red_text"
             android:layout_gravity="right"
             android:id="@+id/tv_phone_login"
+            android:visibility="gone"
             />
     </LinearLayout>
 

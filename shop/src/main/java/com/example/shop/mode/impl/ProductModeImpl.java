@@ -11,6 +11,9 @@ import com.example.worktools.util.GsonUtil;
 
 import static com.example.shop.api.common.ErrMessage.*;
 
+/**
+ * @author xuhao
+ */
 public class ProductModeImpl extends BaseAppMode implements IProductMode {
     @Override
     public void getProductList(ProductParam productParam, CallBack<ProductList> callBack) {

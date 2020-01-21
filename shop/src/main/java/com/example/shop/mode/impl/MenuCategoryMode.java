@@ -8,6 +8,9 @@ import com.example.shop.util.share.SpUtil;
 import com.example.worktools.model.CallBack;
 import com.example.worktools.util.GsonUtil;
 
+/**
+ * @author xuhao
+ */
 public class MenuCategoryMode extends BaseAppMode implements IMCategoryMode {
     @Override
     public void getMenuCategory(boolean isService,CallBack<MCategoryList> callBack) {

@@ -60,7 +60,6 @@ public class LaunchActivity extends Activity implements LaunchProgressView.OnPro
         startActivity(new Intent(LaunchActivity.this, MainActivity.class));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
-
     }
 
 }

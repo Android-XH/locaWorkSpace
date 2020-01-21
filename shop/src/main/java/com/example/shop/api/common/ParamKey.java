@@ -12,6 +12,6 @@ public class ParamKey {
     public static final String MIN_PRICE="minPrice";
     public static final String MAX_PRICE="maxPrice";
     public static final String TYPES="types";
-    public static final String USER_NAME="user_name";
-    public static final String PASS_WORD="pass_word";
+    public static final String USER_NAME="userName";
+    public static final String PASS_WORD="passWord";
 }

@@ -16,7 +16,7 @@ import com.pgyersdk.crash.PgyCrashManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActivity<BasePresenter> implements View.OnClickListener {
+public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActivity implements View.OnClickListener {
     @Nullable
     @BindView(R.id.imb_back)
     ImageButton imbBack;

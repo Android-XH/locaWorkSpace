@@ -7,7 +7,7 @@ import com.example.worktools.model.CallBack;
 import com.example.worktools.model.ProgressCallBack;
 import com.example.worktools.rxjava.factory.RetroFactory;
 import com.example.worktools.rxjava.observer.BaseObserver;
-import com.example.worktools.rxjava.observer.FileUploadObserver;
+import com.example.worktools.rxjava.observer.AbstractFileUploadObserver;
 import com.example.worktools.rxjava.observer.UploadFileRequestBody;
 
 import java.io.File;
@@ -64,7 +64,7 @@ public class RetroSubscrube {
      */
     @SuppressLint("CheckResult")
     public void postFile(String host,String method, File file, Map<String, String> map, final ProgressCallBack callBack) {
-        FileUploadObserver fileUploadObserver =FileUploadObserver.build(callBack);
+        AbstractFileUploadObserver fileUploadObserver = AbstractFileUploadObserver.build(callBack);
         UploadFileRequestBody uploadFileRequestBody = new UploadFileRequestBody(file, fileUploadObserver);
         Observable<Object> observable = RetroFactory.getInstance(host).uploadFile(getBaseUrl(host,method),MultipartBuilder.fileToMultipartBody(file,map,uploadFileRequestBody));
         observable.compose(RxSchedulers.compose()).subscribe(fileUploadObserver);

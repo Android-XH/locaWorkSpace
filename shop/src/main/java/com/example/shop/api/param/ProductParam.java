@@ -4,17 +4,48 @@ package com.example.shop.api.param;
 import com.example.shop.bean.array.Pagination;
 
 public class ProductParam {
-    private Pagination pagination;//分页信息
-    private String keyWord;//搜索关键词
-    private int id;//条目ID
-    private int pid;//商品ID
-    private int category_id;//分类ID
-    private int category_item_id;//子分类ID
-    private int recommend;//推荐等级
+    /**
+     * 分页信息
+     */
+    private Pagination pagination;
+    /**
+     * 搜索关键词
+     */
+    private String keyWord;
+    /**
+     * 条目ID
+     */
+    private int id;
+    /**
+     * 商品ID
+     */
+    private int pid;
+    /**
+     * 分类ID
+     */
+    private int category_id;
+    /**
+     * 子分类ID
+     */
+    private int category_item_id;
+    /**
+     * 推荐等级
+     */
+    private int recommend;
+
     private String sort;
-    private String[] types;//平台类型0 淘宝 1：天猫 2：京东 3：拼多多
-    private String minPrice;//最小价格
-    private String maxPrice;//最大价格
+    /**
+     * 平台类型0 淘宝 1：天猫 2：京东 3：拼多多
+     */
+    private String[] types;
+    /**
+     * 最小价格
+     */
+    private String minPrice;
+    /**
+     * 最大价格
+     */
+    private String maxPrice;
     private int menu_id;
 
     public int getMenu_id() {

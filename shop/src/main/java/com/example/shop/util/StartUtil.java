@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.os.Bundle;
 
+import com.example.shop.activity.LoginActivity;
 import com.example.shop.activity.ProductDetailActivity;
 import com.example.shop.activity.SearchActivity;
 import com.example.shop.activity.SearchDataActivity;
@@ -11,7 +12,9 @@ import com.example.shop.bean.Category;
 import com.example.shop.bean.CategoryItem;
 import com.example.shop.bean.Product;
 import com.example.shop.common.IntentKey;
+import com.example.shop.util.share.SpUtil;
 import com.example.worktools.util.BaseStart;
+import com.example.worktools.util.StringUtil;
 
 public class StartUtil extends BaseStart{
     private static StartUtil startUtil;
@@ -44,5 +47,11 @@ public class StartUtil extends BaseStart{
             bundle.putParcelable(IntentKey.SEARCH_VALUE,(CategoryItem.Data)value);
         }
         startActivity(activity,bundle, SearchDataActivity.class);
+    }
+    public void startLogin(Activity activity){
+        startActivity(activity, LoginActivity.class);
+    }
+    public boolean isLogin(){
+        return StringUtil.isNoEmpty(SpUtil.getInstance().getToken());
     }
 }

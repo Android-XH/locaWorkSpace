@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">微信消息</string>
+    <string name="we_chat_hoke">微信自动转发聊天消息到服务器</string>
+</resources>

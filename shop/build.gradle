@@ -49,5 +49,5 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
     //注意版本与项目一致
     implementation 'com.pgyersdk:sdk:3.0.10'
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.0-alpha03'
 }

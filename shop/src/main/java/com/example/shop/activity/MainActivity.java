@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,10 +15,15 @@ import com.example.shop.AppBaseActivity;
 import com.example.shop.R;
 import com.example.shop.fragment.CategoryListFragment;
 import com.example.shop.fragment.HomeFragment;
+import com.example.shop.fragment.MineFragment;
 import com.example.shop.util.PgyUtil;
+import com.example.shop.util.StartUtil;
+import com.example.shop.util.share.SpUtil;
 import com.example.worktools.adapter.ViewPageTitleAdapter;
 import com.example.worktools.baseview.BaseActivity;
 import com.example.worktools.presenter.BasePresenter;
+import com.example.worktools.util.LogUtil;
+import com.example.worktools.util.StringUtil;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -29,7 +35,7 @@ import butterknife.ButterKnife;
 
 import static com.example.shop.common.ConfigCommon.WRITE_EXTERNAL_STORAGE;
 
-public class MainActivity extends AppBaseActivity implements BaseActivity.RequestPermissionCallBack {
+public class MainActivity extends AppBaseActivity implements BaseActivity.RequestPermissionCallBack{
     @BindView(R.id.vp_content)
     ViewPager vpContent;
     @BindView(R.id.tl_menu)
@@ -37,6 +43,7 @@ public class MainActivity extends AppBaseActivity implements BaseActivity.Reques
     private List<Fragment> fragmentList;
     private List<String>titleList;
     private ViewPageTitleAdapter adapter;
+    private int vpPosition;
     @Override
     protected int setContentView() {
         return R.layout.activity_main_layout;
@@ -64,13 +71,35 @@ public class MainActivity extends AppBaseActivity implements BaseActivity.Reques
         fragmentList=new ArrayList<>();
         fragmentList.add(HomeFragment.getInstance());
         fragmentList.add(CategoryListFragment.getInstance());
+        fragmentList.add(MineFragment.getInstance());
         adapter=new ViewPageTitleAdapter(getSupportFragmentManager(),titleList,fragmentList);
     }
 
     @Override
     protected void initView() {
+//        vpContent.addOnPageChangeListener(this);
         vpContent.setAdapter(adapter);
         tlMenu.setupWithViewPager(vpContent);
+        tlMenu.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                LogUtil.e("onTabSelected>>>>"+tab.getPosition());
+                if(tab.getPosition()==2&&!StartUtil.getInstance().isLogin()){
+                    vpContent.setCurrentItem(vpPosition);
+                }else{
+                    vpPosition=tab.getPosition();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
     }
 
     @Override
@@ -87,4 +116,5 @@ public class MainActivity extends AppBaseActivity implements BaseActivity.Reques
     public void denied() {
 
     }
+
 }

@@ -1,1 +1,1 @@
-include ':app', ':worktools', ':smsphone', ':shop'
+include ':app', ':worktools', ':smsphone', ':shop', ':wechathoke'

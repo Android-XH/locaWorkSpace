@@ -66,4 +66,11 @@ public class MethodParamImpl implements IMethodParam {
         paramCommon.put(PASS_WORD,userParam.getPassWord());
         return paramCommon;
     }
+    @Override
+    public ParamCommon register(UserParam userParam) {
+        ParamCommon paramCommon =ParamCommon.getInstance();
+        paramCommon.put(USER_NAME,userParam.getUserName());
+        paramCommon.put(PASS_WORD,userParam.getPassWord());
+        return paramCommon;
+    }
 }

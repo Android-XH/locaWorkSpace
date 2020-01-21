@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:padding="@dimen/layout_padding"
+        android:id="@+id/imv_close"
+        android:src="@drawable/icon_group_detail_close" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:id="@+id/imv_logo"
+        android:src="@drawable/icon_logo"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:animateLayoutChanges="true"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="手机号"
+            android:textColorHint="@color/black_99"
+            app:counterMaxLength="11"
+            app:hintTextAppearance="@style/EditTextHintStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:maxLength="11"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@+id/et_user_pass"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:inputType="phone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/ll_get_code"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/it_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="验证码"
+                    android:textColorHint="@color/black_99"
+                    app:hintTextAppearance="@style/EditTextHintStyle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/et_user_pass"
+                        android:singleLine="true"
+                        android:maxLength="6"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_code"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="2"
+                    android:text="@string/get_code"
+                    android:textColor="@color/black_33"
+                    android:textSize="15dp"
+                    android:background="@drawable/home_open_button_bkg"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_user_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:visibility="visible"
+            android:hint="密码"
+            android:textColorHint="@color/black_99"
+            app:counterMaxLength="18"
+            app:hintTextAppearance="@style/EditTextHintStyle"
+            app:passwordToggleEnabled="true"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_pass"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:inputType="textPassword"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_user_again_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:visibility="visible"
+            android:hint="再次输入密码"
+            android:textColorHint="@color/black_99"
+            app:counterMaxLength="18"
+            app:hintTextAppearance="@style/EditTextHintStyle"
+            app:passwordToggleEnabled="true"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_again_pass"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:inputType="textPassword"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            style="@style/Button_Blue"
+            android:text="@string/register"
+            android:id="@+id/btn_login_button"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/appTheme"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/has_user_name"
+            android:textColor="@color/black_66"
+            android:textSize="@dimen/sp16" />
+
+        <TextView
+            android:id="@+id/tv_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="马上登录"
+            android:textColor="@color/red_text"
+            android:textSize="@dimen/sp16" />
+    </LinearLayout>
+</RelativeLayout>
