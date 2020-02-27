@@ -10,7 +10,7 @@ public class ParamCommon extends HashMap<String,String> {
         return new ParamCommon();
     }
     @Nullable
-    public Object put(String key, Object value) {
-        return super.put(key, String.valueOf(value));
+    public void put(String key, Object value) {
+        super.put(key, String.valueOf(value));
     }
 }
