@@ -39,4 +39,9 @@ public class SpUtil extends BaseSharedUtil {
     public String getToken(){
         return (String) getData(SharedKey.TOKEN,defaultValue);
     }
+
+    @Override
+    public void onDestory() {
+        super.onDestory();
+    }
 }

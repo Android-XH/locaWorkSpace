@@ -16,9 +16,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author xuhao
+ */
 public class LoginActivity extends AppBaseActivity<LoginPresenter> implements ILoginAndRegisterView {
     @BindView(R.id.et_user_name)
     TextInputEditText etUserName;
@@ -31,8 +33,7 @@ public class LoginActivity extends AppBaseActivity<LoginPresenter> implements IL
 
     @Override
     protected int setContentView() {
-        return R.layout.activity_login_layout
-                ;
+        return R.layout.activity_login_layout;
     }
 
     @Override
@@ -65,21 +66,24 @@ public class LoginActivity extends AppBaseActivity<LoginPresenter> implements IL
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login_button:
-                String phone = etUserName.getText().toString();
+                String phone = EditUtil.getString(etUserName);
                 if (EditUtil.isEmpty(tiUserName, phone, getString(R.string.err_name))) {
                     return;
                 }
-                String pass = etUserPass.getText().toString();
+                String pass = EditUtil.getString(etUserPass);
                 if (EditUtil.isEmpty(tiUserPass, pass, getString(R.string.err_pwd))) {
                     return;
                 }
                 showLoading(getString(R.string.loading_login));
-                UserParam userParam=new UserParam();
+                UserParam userParam = new UserParam();
                 userParam.setUserName(phone);
                 userParam.setPassWord(pass);
                 getPresenter().login(userParam);
                 break;
             case R.id.tv_create:
+                showToastMsg(getString(R.string.register));
+                break;
+            default:
                 break;
         }
     }

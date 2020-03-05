@@ -3,12 +3,14 @@ package com.example.worktools.util;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-public class AppVertionUtil {
+/**
+ * @author xuhao
+ */
+public class AppVersionUtil {
     /**
      * 获取当前本地apk的版本
-     *
-     * @param mContext
-     * @return
+     * @param mContext 上下文
+     * @return versionCode
      */
     public static int getVersionCode(Context mContext) {
         int versionCode = 0;
@@ -24,9 +26,8 @@ public class AppVertionUtil {
 
     /**
      * 获取版本号名称
-     *
      * @param context 上下文
-     * @return
+     * @return verName 版本名称
      */
     public static String getVerName(Context context) {
         String verName = "";

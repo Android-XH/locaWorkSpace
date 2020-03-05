@@ -1,5 +1,6 @@
 package com.example.shop;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -9,8 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.example.shop.util.PgyUtil;
+import com.example.shop.util.share.SpUtil;
 import com.example.worktools.baseview.BaseActivity;
 import com.example.worktools.presenter.BasePresenter;
+import com.example.worktools.util.BaseSharedUtil;
 import com.pgyersdk.crash.PgyCrashManager;
 
 import butterknife.BindView;
@@ -78,5 +81,7 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
     protected void onDestroy() {
         super.onDestroy();
         PgyUtil.unregister();
+        BaseSharedUtil.getInstance().onDestory();
+        SpUtil.getInstance().onDestory();
     }
 }

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.example.shop.BuildConfig;
 import com.example.shop.R;
 import com.example.shop.view.LaunchProgressView;
-import com.example.worktools.util.AppVertionUtil;
+import com.example.worktools.util.AppVersionUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +38,7 @@ public class LaunchActivity extends Activity implements LaunchProgressView.OnPro
         setContentView(R.layout.activity_launch_layout);
         ButterKnife.bind(this);
         launchProgressView.setPercent(100);
-        String ver = getString(R.string.app_name) + (BuildConfig.DEBUG ? "开发版 V " : " V ") + AppVertionUtil.getVerName(this);
+        String ver = getString(R.string.app_name) + (BuildConfig.DEBUG ? "开发版 V " : " V ") + AppVersionUtil.getVerName(this);
         tvAppVer.setText(ver);
         launchProgressView.setProgressListener(this);
     }

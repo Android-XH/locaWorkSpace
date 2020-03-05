@@ -1,14 +1,23 @@
 package com.example.shop.util;
 
 import android.text.TextUtils;
+import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 /**
- * Created by xuhao on 2017/12/12.
+ *
+ * @author xuhao
+ * @date 2017/12/12
  */
 
 public class EditUtil {
+    public static String getString(EditText editText){
+        if(editText!=null){
+            return String.valueOf(editText.getText());
+        }
+        return null;
+    }
     /**
      * 验证是否为空
      * @param account

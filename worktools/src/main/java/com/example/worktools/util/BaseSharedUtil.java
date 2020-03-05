@@ -3,7 +3,6 @@ package com.example.worktools.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -17,6 +16,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * SharedPreferences工具类
+ * @author xuhao
+ */
 public class BaseSharedUtil {
     private static BaseSharedUtil defaultInstance;
     private static SharedPreferences sharedPreferences=null;
@@ -42,6 +45,9 @@ public class BaseSharedUtil {
     public void onDestory(){
         if(sharedPreferences!=null){
             sharedPreferences=null;
+        }
+        if(defaultInstance!=null){
+            defaultInstance=null;
         }
     }
     /**

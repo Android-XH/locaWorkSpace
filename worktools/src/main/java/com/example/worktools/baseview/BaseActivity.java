@@ -253,8 +253,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
 
     @Override
     public void missLoading() {
-        if (progressDialog != null && progressDialog.isShowing())
+        if(progressDialog != null && progressDialog.isShowing()){
             progressDialog.dismiss();
+        }
     }
 
     @Override
