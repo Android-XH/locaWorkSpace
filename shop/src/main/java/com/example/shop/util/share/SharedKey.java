@@ -1,5 +1,9 @@
 package com.example.shop.util.share;
 
+/**
+ * SharedPreferences 存储键
+ * @author xuhao
+ */
 public class SharedKey {
     /**
      * 分类列表
